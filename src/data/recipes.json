@@ -1,0 +1,474 @@
+[
+  {
+    "id": "1",
+    "title": "Classic V60 Pour Over",
+    "description": "Clean cup with bright clarity; a reliable daily pour-over using a medium-fine grind and controlled spiral pours.",
+    "brewTime": "3:30",
+    "difficulty": "Medium",
+    "brewMethod": "Pour Over",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Rinse the paper filter with hot water and discard the rinse."
+      },
+      {
+        "id": "2",
+        "time": "0:30",
+        "instruction": "Add 18g medium-fine coffee and create a flat bed."
+      },
+      {
+        "id": "3",
+        "time": "1:00",
+        "instruction": "Pour 40g water for the bloom and gently swirl the slurry."
+      },
+      {
+        "id": "4",
+        "time": "1:45",
+        "instruction": "Pour to 120g in slow circles avoiding the filter walls."
+      },
+      {
+        "id": "5",
+        "time": "2:30",
+        "instruction": "Pour to 250g total and keep the bed height even."
+      },
+      {
+        "id": "6",
+        "time": "3:30",
+        "instruction": "Let drawdown finish; target flat bed with no high-and-dry edges."
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Double Shot Espresso",
+    "description": "Balanced 1:2 ratio shot: sweet, full body, and a thin stripe of crema when dialed in.",
+    "brewTime": "0:28",
+    "difficulty": "Hard",
+    "brewMethod": "Espresso",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Grind 18g to a fine texture suitable for espresso."
+      },
+      {
+        "id": "2",
+        "time": "0:08",
+        "instruction": "Distribute evenly and tamp level with firm consistent pressure."
+      },
+      {
+        "id": "3",
+        "time": "0:12",
+        "instruction": "Lock in the portafilter and start the shot immediately."
+      },
+      {
+        "id": "4",
+        "time": "0:28",
+        "instruction": "Stop at 36g yield or when blonding begins; taste and adjust grind."
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Overnight Cold Brew Concentrate",
+    "description": "Smooth low-acid concentrate for diluting with water or milk; steep coarse grounds cold for many hours.",
+    "brewTime": "12:00",
+    "difficulty": "Easy",
+    "brewMethod": "Cold Brew",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Coarsely grind 120g coffee for a slow cold extraction."
+      },
+      {
+        "id": "2",
+        "time": "0:05",
+        "instruction": "Add grounds to a jar or cold brew maker with filtered water ready."
+      },
+      {
+        "id": "3",
+        "time": "0:10",
+        "instruction": "Pour 720g cold water and stir until all grounds are saturated."
+      },
+      {
+        "id": "4",
+        "time": "12:00",
+        "instruction": "Steep 12 hours in the fridge; strain through paper or metal filter."
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "title": "French Press Full Immersion",
+    "description": "Rich body and heavy mouthfeel; coarse grind and full four-minute steep before plunging slowly.",
+    "brewTime": "4:00",
+    "difficulty": "Easy",
+    "brewMethod": "French Press",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Preheat the press with hot water then discard the water."
+      },
+      {
+        "id": "2",
+        "time": "0:30",
+        "instruction": "Add 30g coarse coffee to the empty press."
+      },
+      {
+        "id": "3",
+        "time": "0:45",
+        "instruction": "Pour 500g water at 200°F and stir the crust gently."
+      },
+      {
+        "id": "4",
+        "time": "4:00",
+        "instruction": "Plunge slowly in one steady motion; pour off any excess silt if needed."
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "title": "AeroPress Standard",
+    "description": "Versatile immersion-plus-pressure brew; quick cleanup and a clean cup with medium-fine grind.",
+    "brewTime": "2:00",
+    "difficulty": "Medium",
+    "brewMethod": "AeroPress",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Place filter in cap, rinse, and assemble on a sturdy mug."
+      },
+      {
+        "id": "2",
+        "time": "0:20",
+        "instruction": "Add 15g medium-fine coffee then 250g water just off the boil."
+      },
+      {
+        "id": "3",
+        "time": "1:00",
+        "instruction": "Stir briefly at 10 seconds and attach the plunger slightly to seal."
+      },
+      {
+        "id": "4",
+        "time": "2:00",
+        "instruction": "Press gently for 20–30 seconds until you hear a hiss."
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "title": "Chemex Iced Pourover",
+    "description": "Bright iced coffee by brewing hot directly onto ice in the Chemex for immediate chill and clarity.",
+    "brewTime": "4:00",
+    "difficulty": "Medium",
+    "brewMethod": "Chemex",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Place 150g ice in the Chemex and set rinsed filter on top."
+      },
+      {
+        "id": "2",
+        "time": "0:45",
+        "instruction": "Add 22g medium grind coffee to the dry filter bed."
+      },
+      {
+        "id": "3",
+        "time": "1:30",
+        "instruction": "Bloom with 60g hot water and wait 30 seconds."
+      },
+      {
+        "id": "4",
+        "time": "4:00",
+        "instruction": "Pour remaining hot water to 330g total in slow pulses; swirl and serve over ice."
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "title": "Moka Pot Stovetop",
+    "description": "Concentrated stovetop coffee just shy of espresso; watch heat to avoid bitter over-extraction.",
+    "brewTime": "5:00",
+    "difficulty": "Medium",
+    "brewMethod": "Moka Pot",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Fill bottom chamber with hot water just below the valve line."
+      },
+      {
+        "id": "2",
+        "time": "0:30",
+        "instruction": "Fill basket with fine grind coffee level without compacting."
+      },
+      {
+        "id": "3",
+        "time": "1:00",
+        "instruction": "Screw together tightly and place on medium-low heat."
+      },
+      {
+        "id": "4",
+        "time": "5:00",
+        "instruction": "Remove from heat when coffee bubbles; run base under cool water to stop extraction."
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "title": "Kalita Wave 185",
+    "description": "Forgiving flat-bottom brew; even drainage and repeatable cups with three gentle pours.",
+    "brewTime": "3:15",
+    "difficulty": "Medium",
+    "brewMethod": "Pour Over",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Rinse wave filters and preheat the brewer and server."
+      },
+      {
+        "id": "2",
+        "time": "0:40",
+        "instruction": "Add 20g medium grind and level the bed with a gentle tap."
+      },
+      {
+        "id": "3",
+        "time": "1:20",
+        "instruction": "Bloom with 50g water for 30 seconds without agitation."
+      },
+      {
+        "id": "4",
+        "time": "3:15",
+        "instruction": "Complete three pours to 320g total; keep water below filter rim."
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "title": "Clever Drip Immersion",
+    "description": "Full immersion steep with a clean drawdown; great for medium roasts and forgiving timing.",
+    "brewTime": "4:30",
+    "difficulty": "Easy",
+    "brewMethod": "Immersion",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Place filter in the Clever and rinse with hot water."
+      },
+      {
+        "id": "2",
+        "time": "0:30",
+        "instruction": "Add 22g medium grind coffee to the closed brewer."
+      },
+      {
+        "id": "3",
+        "time": "1:00",
+        "instruction": "Pour 360g water at 200°F and stir once gently."
+      },
+      {
+        "id": "4",
+        "time": "4:30",
+        "instruction": "At 3 minutes place on a carafe to drain; wait until drawdown completes."
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "title": "Siphon Two-Chamber",
+    "description": "Theatrical vacuum brewing with full clarity; control heat so the column does not boil violently.",
+    "brewTime": "6:00",
+    "difficulty": "Hard",
+    "brewMethod": "Siphon",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Heat filtered water in the lower globe until it rises to the upper."
+      },
+      {
+        "id": "2",
+        "time": "1:30",
+        "instruction": "Add 25g medium grind and submerge gently with a paddle."
+      },
+      {
+        "id": "3",
+        "time": "3:30",
+        "instruction": "Stir once at 30 seconds and maintain gentle heat."
+      },
+      {
+        "id": "4",
+        "time": "6:00",
+        "instruction": "Remove heat; coffee draws down through the filter into the lower globe."
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "title": "Cowboy Coffee Camp Style",
+    "description": "Rustic boil-and-settle brew when filters are scarce; coarse grind reduces sludge in the cup.",
+    "brewTime": "8:00",
+    "difficulty": "Easy",
+    "brewMethod": "Boiled",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Bring 500g water to a gentle boil in a small pot."
+      },
+      {
+        "id": "2",
+        "time": "1:00",
+        "instruction": "Remove from heat 30 seconds then add 32g coarse coffee."
+      },
+      {
+        "id": "3",
+        "time": "4:00",
+        "instruction": "Stir once and let steep four minutes without boiling."
+      },
+      {
+        "id": "4",
+        "time": "8:00",
+        "instruction": "Add a splash of cold water to settle grounds; pour slowly leaving sediment behind."
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "title": "Turkish Coffee Fine Ibrik",
+    "description": "Unfiltered ultra-fine grind with foam; stop before full rolling boil to keep bitterness low.",
+    "brewTime": "5:00",
+    "difficulty": "Hard",
+    "brewMethod": "Turkish",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Combine 7g extra-fine coffee with 70g cold water in the cezve."
+      },
+      {
+        "id": "2",
+        "time": "2:00",
+        "instruction": "Heat slowly while stirring until foam begins to form on top."
+      },
+      {
+        "id": "3",
+        "time": "3:30",
+        "instruction": "Pour a little foam into cups before returning the cezve to heat."
+      },
+      {
+        "id": "4",
+        "time": "5:00",
+        "instruction": "Repeat foam collection twice then let grounds settle before sipping."
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "title": "Flash Brew Iced Filter",
+    "description": "Japanese-style iced filter: part of the brew water is replaced with ice in the server for brightness.",
+    "brewTime": "3:45",
+    "difficulty": "Medium",
+    "brewMethod": "Pour Over",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Place 100g ice in the server and set dripper with rinsed filter."
+      },
+      {
+        "id": "2",
+        "time": "0:50",
+        "instruction": "Use 18g coffee slightly finer than hot pour-over."
+      },
+      {
+        "id": "3",
+        "time": "2:00",
+        "instruction": "Bloom with 40g hot water then continue to 180g total hot."
+      },
+      {
+        "id": "4",
+        "time": "3:45",
+        "instruction": "Swirl the server to melt ice; dilute to taste if still too strong."
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "title": "Nordic Light Roast Cupping Bowl",
+    "description": "Evaluation-style steep for tasting lots; break the crust at four minutes and skim the surface.",
+    "brewTime": "12:00",
+    "difficulty": "Easy",
+    "brewMethod": "Cupping",
+    "userId": "catalog",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z",
+    "steps": [
+      {
+        "id": "1",
+        "time": "0:00",
+        "instruction": "Weigh 12g coarse coffee into a bowl per sample."
+      },
+      {
+        "id": "2",
+        "time": "0:30",
+        "instruction": "Add 200g water just off boil and start a timer immediately."
+      },
+      {
+        "id": "3",
+        "time": "4:00",
+        "instruction": "Break the crust with two spoons and smell the wet aroma."
+      },
+      {
+        "id": "4",
+        "time": "12:00",
+        "instruction": "Skim foam and slurp when cool enough; spit if tasting many cups."
+      }
+    ]
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Brew Master",
+    "slug": "brew-master",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "brewmaster",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FAF6EF"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.brewmaster.app"
+    },
+    "android": {
+      "package": "com.brewmaster.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FAF6EF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

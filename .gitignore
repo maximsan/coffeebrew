@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+
+# Expo and React Native generated state
+.expo/
+.expo
+dist/
+web-build/
+ios/
+android/
+
+# Native build artifacts
+*.xcworkspace/
+*.xcodeproj/
+DerivedData/
+build/
+Pods/
+*.apk
+*.aab
+*.ipa
+
+# EAS local state
+.eas/
+eas-build-*.tar.gz
+
+# Environment and secrets
+.env*
+!.env.example
+
+# Logs and reports
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/
+coverage
+
+# OS and editor noise
+.DS_Store
+*.swp
+*.swo
