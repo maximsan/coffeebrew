@@ -91,6 +91,9 @@ const ButtonText = styled.Text<{ variant: "primary" | "secondary" }>`
  * **Countdown** timer aligned to wall clock: remaining time = deadline − now.
  * Survives brief backgrounding: when the app returns to the foreground, the
  * display resyncs from the same deadline (minimal recovery for v1).
+ *
+ * Changing `initialTime` does not restart the countdown. To start fresh with a
+ * new length, give the timer a new `key`.
  */
 export const BrewTimer: React.FC<BrewTimerProps> = ({
   initialTime = 180,
@@ -103,24 +106,11 @@ export const BrewTimer: React.FC<BrewTimerProps> = ({
   const deadlineMsRef = useRef<number | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const secondsLeftRef = useRef(initialTime);
-  const initialTimeRef = useRef(initialTime);
   const onCompleteRef = useRef(onComplete);
 
   useEffect(() => {
     onCompleteRef.current = onComplete;
   }, [onComplete]);
-
-  useEffect(() => {
-    initialTimeRef.current = initialTime;
-    secondsLeftRef.current = initialTime;
-    setSecondsLeft(initialTime);
-    setIsRunning(false);
-    deadlineMsRef.current = null;
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  }, [initialTime]);
 
   useEffect(() => {
     secondsLeftRef.current = secondsLeft;
@@ -202,17 +192,15 @@ export const BrewTimer: React.FC<BrewTimerProps> = ({
       return;
     }
     const base =
-      secondsLeftRef.current <= 0
-        ? initialTimeRef.current
-        : secondsLeftRef.current;
+      secondsLeftRef.current <= 0 ? initialTime : secondsLeftRef.current;
     deadlineMsRef.current = Date.now() + base * 1000;
     setIsRunning(true);
   };
 
   const resetTimer = () => {
     pause();
-    secondsLeftRef.current = initialTimeRef.current;
-    setSecondsLeft(initialTimeRef.current);
+    secondsLeftRef.current = initialTime;
+    setSecondsLeft(initialTime);
   };
 
   const formatTime = (seconds: number): string => {

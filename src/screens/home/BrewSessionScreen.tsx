@@ -235,12 +235,6 @@ export const BrewSessionScreen: React.FC = () => {
     return Math.max(5, parseStepTimeToSeconds(step.time));
   }, [step]);
 
-  const [timerKey, setTimerKey] = useState(0);
-
-  React.useEffect(() => {
-    setTimerKey((k) => k + 1);
-  }, [stepIndex]);
-
   const goNext = useCallback(() => {
     if (!recipe) {
       return;
@@ -343,7 +337,7 @@ export const BrewSessionScreen: React.FC = () => {
           README).
         </Hint>
         <BrewTimer
-          key={`${timerKey}-${step.id}`}
+          key={stepIndex}
           initialTime={timerInitialSeconds}
           onComplete={goNext}
         />

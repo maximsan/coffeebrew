@@ -383,20 +383,24 @@ export const HomeScreen = () => {
     }, [loadRecent]),
   );
 
-  const load = useCallback(async () => {
-    try {
-      setError(null);
-      await recipeService.init();
-      const list = await recipeService.getAllRecipes();
-      setRecipes(list);
-      await loadRecent();
-    } catch {
-      setError("Could not load recipes.");
-    } finally {
-      setLoading(false);
-      setRefreshing(false);
-    }
-  }, [loadRecent]);
+  const load = useCallback(
+    () =>
+      recipeService
+        .init()
+        .then(() => recipeService.getAllRecipes())
+        .then((list) => {
+          setRecipes(list);
+          return loadRecent();
+        })
+        .catch(() => {
+          setError("Could not load recipes.");
+        })
+        .finally(() => {
+          setLoading(false);
+          setRefreshing(false);
+        }),
+    [loadRecent],
+  );
 
   useEffect(() => {
     load();
