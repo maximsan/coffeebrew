@@ -12,7 +12,6 @@ import {
   StyledProps,
   StyledPropsWithVariant,
   StyledPropsWithSize,
-  StyledPropsWithLoading,
   StyledPropsWithFullWidth,
 } from "../theme/styled-components";
 import { DefaultTheme } from "styled-components/native";
@@ -34,8 +33,6 @@ export interface ButtonProps {
   accessibilityRole?: AccessibilityRole;
 }
 
-interface ButtonTextProps
-  extends StyledPropsWithVariant, StyledPropsWithSize, StyledPropsWithLoading {}
 interface StyledButtonProps
   extends
     StyledPropsWithVariant,
@@ -127,12 +124,7 @@ export const Button: React.FC<ButtonProps> = ({
           accessibilityLabel={`Loading: ${title}`}
         />
       ) : (
-        <ButtonText
-          variant={variant}
-          size={size}
-          loading={loading}
-          maxFontSizeMultiplier={1.35}
-        >
+        <ButtonText variant={variant} maxFontSizeMultiplier={1.35}>
           {title}
         </ButtonText>
       )}
