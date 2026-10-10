@@ -6,9 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 npm run start        # Start Expo dev server (press i for iOS, a for Android)
-npm run ios          # Start directly on iOS simulator
+npm run start:ios    # Start the dev server and open the app in Expo Go on the iOS simulator
+npm run ios          # Build the native iOS app with Xcode and run it on the simulator
 npm run typecheck    # TypeScript strict-mode check — run before committing
 npm run lint         # Expo ESLint
+npm run lint:fix     # Expo ESLint, applying automatic fixes
 npm run format:check # Prettier formatting check
 npm test -- --runInBand
 npm run doctor       # Expo Doctor compatibility checks
