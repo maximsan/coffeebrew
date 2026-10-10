@@ -6,9 +6,9 @@ React Native app for guided coffee brewing. Project root for Metro / Expo is thi
 
 - **Home:** recipes → recipe detail → brew session → brew complete. Recipe detail also opens dose editing. Home and More both open brew history.
 
-**Recipe catalog:** bundled JSON at `src/data/recipes.json` (edit + ship with releases). V1 has no recipe creation. `recipeService` can store user recipes in AsyncStorage, but no V1 screen uses it.
+**Recipe catalog:** bundled JSON at `src/data/recipes.json` (edit + ship with releases). V1 has no recipe creation.
 
-**Brew history:** Completed sessions are appended to a local log (`brewHistoryService`, key `brew_master_brew_history_v1`). Not synced — device-only. Optional tasting notes are a later feature.
+**Brew history:** Completed sessions are saved to a local log, newest first, keeping only the most recent ones (`brewHistoryService`, key `brew_master_brew_history_v1`). Not synced — device-only. Optional tasting notes are a later feature.
 
 ## Brew timer (V1)
 
@@ -89,3 +89,4 @@ Icons and splash live in `assets/`. Replace `icon.png`, `splash-icon.png`, and `
 - V1 scope: `docs/v1_phase0_scope.md`
 - Checklist: `docs/v1_solo_checklist.md`
 - Code postponed past V1: `docs/v2_backlog.md`
+- Product ideas for postponed areas: `docs/design/`. Its `files/` folder holds mockups from before V1 was scoped; some show features outside V1.

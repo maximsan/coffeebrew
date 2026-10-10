@@ -14,7 +14,7 @@ V1 scope is locked in [docs/v1_phase0_scope.md](docs/v1_phase0_scope.md). Do not
 
 ### Recipe data
 
-Curated catalog is bundled JSON at [src/data/recipes.json](src/data/recipes.json) — update recipes by editing this file and shipping a release. `recipeService` loads it at startup via `bundledRecipes` (read-only). `recipeService` can also store user recipes in AsyncStorage under the key `brew_master_user_recipes_v1`, but no V1 screen creates them. Built-in recipes cannot be edited or deleted.
+The curated catalog is described under "Recipe catalog" in [README.md](README.md). `recipeService` loads it at startup via `bundledRecipes` (read-only). It can also store user recipes in AsyncStorage under the key `brew_master_user_recipes_v1`, but no V1 screen creates them. Built-in recipes cannot be edited or deleted.
 
 ### State management
 
@@ -22,7 +22,12 @@ No global state library in active use. Zustand and React Query are installed but
 
 ### Theming
 
-[src/theme/theme.ts](src/theme/theme.ts) defines a warm light theme with terracotta accent colors. Use `styled-components/native` for all components, imported as `import { styled } from "styled-components/native"`; access theme values via the theme object. Use the `StyledProps` type from `src/theme/styled-components.ts` for typed interpolations.
+[src/theme/theme.ts](src/theme/theme.ts) defines a warm light theme with terracotta accent colors.
+
+- Build all components with `styled-components/native`.
+- Import it as `import { styled } from "styled-components/native"`.
+- Read colors, spacing and fonts from the theme object.
+- Type interpolations with `StyledProps` from `src/theme/styled-components.ts`.
 
 ### Validation
 
@@ -30,8 +35,4 @@ Zod schemas live alongside their services (`recipeSchema` in `services/recipes.t
 
 ## Key docs
 
-- Project terms: [GLOSSARY.md](GLOSSARY.md)
-- V1 scope decisions: [docs/v1_phase0_scope.md](docs/v1_phase0_scope.md)
-- Solo dev checklist: [docs/v1_solo_checklist.md](docs/v1_solo_checklist.md)
-- Code postponed past V1: [docs/v2_backlog.md](docs/v2_backlog.md)
-- Product ideas for postponed areas, plus example screen mockups in `files/`: [docs/design/](docs/design/)
+The docs index is under "Related docs" in [README.md](README.md).
