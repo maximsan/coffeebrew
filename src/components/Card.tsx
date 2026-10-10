@@ -6,9 +6,8 @@ import {
   ViewStyle,
   type ImageSourcePropType,
 } from "react-native";
-import styled from "styled-components/native";
+import { styled, DefaultTheme } from "styled-components/native";
 import { StyledProps } from "../theme/styled-components";
-import { DefaultTheme } from "styled-components/native";
 
 const CARD_ELEVATION: ViewStyle = {
   shadowColor: "rgb(61, 52, 43)",

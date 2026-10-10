@@ -1,19 +1,13 @@
 // Postponed past v1 — not in the v1 navigator; see app/docs/v2_backlog.md
 import React, { useState } from "react";
-import { View, ScrollView, TouchableOpacity, Image } from "react-native";
-import styled from "styled-components/native";
-import {
-  useNavigation,
-  NavigationProp,
-  ParamListBase,
-} from "@react-navigation/native";
+
+import { styled } from "styled-components/native";
+
 import { Button } from "../../components/Button";
 import { TextInput } from "../../components/TextInput";
 import { StyledProps } from "../../theme/styled-components";
 
 /** Screen not mounted in v1 navigator — loose typing until recipe authoring returns. */
-type CreateScreenNavigationProp = NavigationProp<ParamListBase>;
-
 const Container = styled.View<StyledProps>`
   flex: 1;
   background-color: ${({ theme }: StyledProps) =>
@@ -96,7 +90,6 @@ const PublishButton = styled(Button)<StyledProps>`
 `;
 
 export const CreateScreen = () => {
-  const navigation = useNavigation<CreateScreenNavigationProp>();
   const [recipeTitle, setRecipeTitle] = useState("");
   const [recipeDescription, setRecipeDescription] = useState("");
   const [brewMethod, setBrewMethod] = useState("");

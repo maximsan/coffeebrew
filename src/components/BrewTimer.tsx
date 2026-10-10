@@ -1,14 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  Vibration,
-  AppState,
-  type AppStateStatus,
-} from "react-native";
-import styled from "styled-components/native";
-import { DefaultTheme } from "styled-components/native";
+import { Vibration, AppState, type AppStateStatus } from "react-native";
+import { styled, DefaultTheme } from "styled-components/native";
 import * as Haptics from "expo-haptics";
 
 interface BrewTimerProps {

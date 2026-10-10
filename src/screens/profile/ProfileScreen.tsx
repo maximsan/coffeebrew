@@ -1,12 +1,11 @@
 // Postponed past v1 — not in the v1 navigator; see app/docs/v2_backlog.md
 import React from "react";
 import { View, ScrollView, Image, TouchableOpacity, Text } from "react-native";
-import styled from "styled-components/native";
+import { styled, DefaultTheme } from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ProfileStackParamList } from "../../navigation/types";
 import { Button } from "../../components/Button";
-import { DefaultTheme } from "styled-components/native";
 
 type ProfileScreenNavigationProp =
   NativeStackNavigationProp<ProfileStackParamList>;

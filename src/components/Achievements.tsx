@@ -7,8 +7,7 @@ import {
   ActivityIndicator,
   Text,
 } from "react-native";
-import styled from "styled-components/native";
-import { DefaultTheme, useTheme } from "styled-components/native";
+import { styled, DefaultTheme, useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import {
   achievementService,

@@ -1,14 +1,13 @@
 // Postponed past v1 — not in the v1 navigator; see app/docs/v2_backlog.md
 import React, { useState } from "react";
 import { View, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
-import styled from "styled-components/native";
+import { styled, DefaultTheme } from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "../../navigation/types";
 import { Button } from "../../components/Button";
 import { TextInput } from "../../components/TextInput";
 import { z } from "zod";
-import { DefaultTheme } from "styled-components/native";
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
@@ -113,7 +112,7 @@ export const RegisterScreen = () => {
       // TODO: Implement actual registration logic
       await new Promise((resolve) => setTimeout(resolve, 1000));
       // Navigate to main app
-    } catch (error) {
+    } catch {
       // Handle registration error
     } finally {
       setIsLoading(false);

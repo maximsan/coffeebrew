@@ -1,10 +1,8 @@
 // Postponed past v1 — not in the v1 navigator; see app/docs/v2_backlog.md
 import React, { useState } from "react";
 import {
-  View,
   ScrollView,
   TextInput,
-  TouchableOpacity,
   Alert,
   KeyboardAvoidingView,
   Platform,
@@ -14,8 +12,7 @@ import {
   NavigationProp,
   ParamListBase,
 } from "@react-navigation/native";
-import styled from "styled-components/native";
-import { DefaultTheme } from "styled-components/native";
+import { styled } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { ImagePickerComponent } from "../../components/ImagePicker";
 import { recipeService } from "../../services/recipes";

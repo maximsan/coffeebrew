@@ -7,14 +7,12 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import styled from "styled-components/native";
+import { styled, useTheme, DefaultTheme } from "styled-components/native";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "styled-components/native";
 import { HomeStackParamList } from "../../navigation/types";
 import { StyledProps } from "../../theme/styled-components";
-import { DefaultTheme } from "styled-components/native";
 import {
   formatRatioParts,
   liquidLabelForMethod,

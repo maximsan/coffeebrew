@@ -9,8 +9,7 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
-import styled from "styled-components/native";
-import { DefaultTheme } from "styled-components/native";
+import { styled, DefaultTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { StyledProps } from "../theme/styled-components";
 import type { Comment } from "../types/comment";

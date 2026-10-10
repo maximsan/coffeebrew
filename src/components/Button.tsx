@@ -6,15 +6,12 @@ import {
   ViewStyle,
   type AccessibilityRole,
 } from "react-native";
-import styled from "styled-components/native";
-import { useTheme } from "styled-components/native";
+import { styled, useTheme, DefaultTheme } from "styled-components/native";
 import {
-  StyledProps,
   StyledPropsWithVariant,
   StyledPropsWithSize,
   StyledPropsWithFullWidth,
 } from "../theme/styled-components";
-import { DefaultTheme } from "styled-components/native";
 
 const MIN_TAP_HEIGHT = 44;
 

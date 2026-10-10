@@ -8,15 +8,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import styled from "styled-components/native";
+import { styled, useTheme, DefaultTheme } from "styled-components/native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "styled-components/native";
 import { HomeStackParamList } from "../../navigation/types";
 import { Card } from "../../components/Card";
 import { StyledProps } from "../../theme/styled-components";
-import { DefaultTheme } from "styled-components/native";
 import { recipeService, Recipe } from "../../services/recipes";
 import { brewHistoryService, BrewLogEntry } from "../../services/brewHistory";
 import { recipeImageSource } from "../../utils/recipeImages";

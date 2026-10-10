@@ -1,13 +1,12 @@
 // Postponed past v1 — not in the v1 navigator; see app/docs/v2_backlog.md
 import React, { useState } from "react";
 import { View, FlatList, TouchableOpacity, Image, Text } from "react-native";
-import styled from "styled-components/native";
+import { styled, DefaultTheme } from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { CommunityStackParamList } from "../../navigation/types";
-import { Button } from "../../components/Button";
+
 import { StyledProps } from "../../theme/styled-components";
-import { DefaultTheme } from "styled-components/native";
 
 type CommunityScreenNavigationProp = NativeStackNavigationProp<
   CommunityStackParamList,

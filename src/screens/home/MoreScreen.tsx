@@ -1,13 +1,11 @@
 import React from "react";
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import styled from "styled-components/native";
+import { styled, useTheme, DefaultTheme } from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import type { NavigationProp } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "styled-components/native";
 import { StyledProps } from "../../theme/styled-components";
-import { DefaultTheme } from "styled-components/native";
 import { MainTabParamList } from "../../navigation/types";
 
 const Container = styled(SafeAreaView).attrs({

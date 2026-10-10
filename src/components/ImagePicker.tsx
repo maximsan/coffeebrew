@@ -1,15 +1,7 @@
 // Postponed past v1 — only non-v1 screens use this; see app/docs/v2_backlog.md
-import React, { useState } from "react";
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  Alert,
-  Platform,
-  PermissionsAndroid,
-} from "react-native";
-import styled from "styled-components/native";
-import { DefaultTheme } from "styled-components/native";
+import React from "react";
+import { View, Alert, Platform, PermissionsAndroid } from "react-native";
+import { styled, DefaultTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 
@@ -97,8 +89,6 @@ export const ImagePickerComponent: React.FC<ImagePickerProps> = ({
   quality = 0.7,
   size = "medium",
 }) => {
-  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
-
   const requestCameraPermission = async () => {
     if (Platform.OS === "android") {
       try {

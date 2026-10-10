@@ -1,16 +1,14 @@
 // Postponed past v1 — not in the v1 navigator; see app/docs/v2_backlog.md
 import React, { useState } from "react";
 import { View, ScrollView, TouchableOpacity, Alert, Text } from "react-native";
-import styled from "styled-components/native";
-import { DefaultTheme } from "styled-components/native";
+import { styled, DefaultTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { RecipeAnalysis } from "../../components/RecipeAnalysis";
 import { BeanRecognition } from "../../components/BeanRecognition";
 import { PersonalizedRecommendations } from "../../components/PersonalizedRecommendations";
 import { BrewingHistory } from "../../components/BrewingHistory";
-import { recipeService } from "../../services/recipes";
-import { Recipe } from "../../services/recipes";
+import { recipeService, Recipe } from "../../services/recipes";
 import { authService } from "../../services/auth";
 
 const Container = styled(View)`

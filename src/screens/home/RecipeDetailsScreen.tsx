@@ -1,14 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  View,
-  ScrollView,
-  ActivityIndicator,
-  TouchableOpacity,
-} from "react-native";
-import styled from "styled-components/native";
+import { View, ActivityIndicator, TouchableOpacity } from "react-native";
+import { styled, useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
-import { useTheme } from "styled-components/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "../../navigation/types";
 import { Button } from "../../components/Button";

@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { View, ScrollView, ActivityIndicator, Text } from "react-native";
 import * as Haptics from "expo-haptics";
-import styled from "styled-components/native";
+import { styled, DefaultTheme, useTheme } from "styled-components/native";
 import { RouteProp, useRoute, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "../../navigation/types";
@@ -16,7 +16,6 @@ import { getRecipeDose, liquidLabelForMethod } from "../../services/recipeDose";
 import { BrewTimer } from "../../components/BrewTimer";
 import { Button } from "../../components/Button";
 import { StyledProps } from "../../theme/styled-components";
-import { DefaultTheme, useTheme } from "styled-components/native";
 
 type BrewSessionRouteProp = RouteProp<HomeStackParamList, "BrewSession">;
 type BrewSessionNavigationProp = NativeStackNavigationProp<

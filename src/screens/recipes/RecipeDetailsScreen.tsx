@@ -10,16 +10,14 @@ import {
   Text,
 } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import styled from "styled-components/native";
-import { useTheme } from "styled-components/native";
+import { styled, useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { BrewTimer } from "../../components/BrewTimer";
 import { Rating } from "../../components/Rating";
 import { Comments } from "../../components/Comments";
-import { recipeService } from "../../services/recipes";
+import { recipeService, Recipe } from "../../services/recipes";
 import { recipeImageSource } from "../../utils/recipeImages";
 import { authService } from "../../services/auth";
-import { Recipe } from "../../services/recipes";
 import { StyledProps } from "../../theme/styled-components";
 import { User } from "../../types/user";
 import { Comment } from "../../types/comment";
@@ -305,7 +303,7 @@ export const RecipeDetailsScreen = () => {
         message: `Check out this coffee recipe: ${recipe.title}\n\n${recipe.description}`,
         title: recipe.title,
       });
-    } catch (error) {
+    } catch {
       Alert.alert("Error", "Failed to share recipe");
     }
   };
@@ -322,7 +320,7 @@ export const RecipeDetailsScreen = () => {
       setUserRating(value);
       // TODO: Implement API call to save rating
       // await recipeService.saveRating(recipe.id, currentUser.id, value);
-    } catch (error) {
+    } catch {
       Alert.alert("Error", "Failed to save rating");
     }
   };
@@ -342,7 +340,7 @@ export const RecipeDetailsScreen = () => {
       // TODO: Implement API call to save comment
       // await recipeService.saveComment(recipe.id, newComment);
       setComments([newComment, ...comments]);
-    } catch (error) {
+    } catch {
       Alert.alert("Error", "Failed to add comment");
     }
   };
@@ -354,7 +352,7 @@ export const RecipeDetailsScreen = () => {
       // TODO: Implement API call to delete comment
       // await recipeService.deleteComment(recipe.id, commentId);
       setComments(comments.filter((comment) => comment.id !== commentId));
-    } catch (error) {
+    } catch {
       Alert.alert("Error", "Failed to delete comment");
     }
   };

@@ -7,7 +7,7 @@ import {
   RefreshControl,
   ListRenderItem,
 } from "react-native";
-import styled from "styled-components/native";
+import { styled, DefaultTheme, useTheme } from "styled-components/native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "../../navigation/types";
@@ -17,7 +17,6 @@ import {
   MAX_BREW_HISTORY_ENTRIES,
 } from "../../services/brewHistory";
 import { StyledProps } from "../../theme/styled-components";
-import { DefaultTheme, useTheme } from "styled-components/native";
 
 type Nav = NativeStackNavigationProp<HomeStackParamList, "History">;
 

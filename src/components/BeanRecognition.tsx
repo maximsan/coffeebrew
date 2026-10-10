@@ -1,14 +1,7 @@
 // Postponed past v1 — only non-v1 screens use this; see app/docs/v2_backlog.md
 import React, { useState } from "react";
-import {
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-  ActivityIndicator,
-} from "react-native";
-import styled from "styled-components/native";
-import { DefaultTheme, useTheme } from "styled-components/native";
+import { View, ScrollView, ActivityIndicator } from "react-native";
+import { styled, DefaultTheme, useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { aiService, BeanAnalysis } from "../services/ai";

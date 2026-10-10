@@ -2,16 +2,13 @@
 import React, { useEffect } from "react";
 import {
   Modal as RNModal,
-  View,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Animated,
-  Dimensions,
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import styled from "styled-components/native";
-import { DefaultTheme } from "styled-components/native";
+import { styled, DefaultTheme } from "styled-components/native";
 
 interface ModalProps {
   visible: boolean;

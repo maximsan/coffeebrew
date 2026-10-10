@@ -1,8 +1,7 @@
 // Postponed past v1 — only non-v1 screens use this; see app/docs/v2_backlog.md
 import React, { useState, useEffect } from "react";
 import { View, ScrollView, ActivityIndicator } from "react-native";
-import styled from "styled-components/native";
-import { DefaultTheme, useTheme } from "styled-components/native";
+import { styled, DefaultTheme, useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { aiService } from "../services/ai";
 

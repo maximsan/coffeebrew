@@ -3,7 +3,7 @@ import { z } from "zod";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Achievement schema
-const achievementSchema = z.object({
+export const achievementSchema = z.object({
   id: z.string(),
   title: z.string(),
   description: z.string(),
@@ -18,7 +18,7 @@ const achievementSchema = z.object({
 export type Achievement = z.infer<typeof achievementSchema>;
 
 // Badge schema
-const badgeSchema = z.object({
+export const badgeSchema = z.object({
   id: z.string(),
   title: z.string(),
   description: z.string(),
@@ -429,9 +429,6 @@ class AchievementService {
    * Check and unlock badges based on achievements
    */
   private async checkBadgeUnlocks(): Promise<void> {
-    const unlockedAchievements = this.getUnlockedAchievements();
-    const totalPoints = this.getTotalPoints();
-
     // Beginner Brewer badge
     if (
       this.achievements.find((a) => a.id === "first_brew")?.isUnlocked &&

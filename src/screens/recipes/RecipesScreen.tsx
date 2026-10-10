@@ -1,7 +1,7 @@
 // Postponed past v1 — not in the v1 navigator; see app/docs/v2_backlog.md
-import React, { useState } from "react";
-import { View, FlatList, TouchableOpacity } from "react-native";
-import styled from "styled-components/native";
+import React from "react";
+import { FlatList } from "react-native";
+import { styled } from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RecipesStackParamList } from "../../navigation/types";
@@ -86,7 +86,6 @@ const recipes: Recipe[] = [
 
 export const RecipesScreen = () => {
   const navigation = useNavigation<RecipesScreenNavigationProp>();
-  const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>(recipes);
 
   const handleFilter = () => {
     // TODO: Implement filter functionality
@@ -122,7 +121,7 @@ export const RecipesScreen = () => {
       </Header>
       <Content>
         <FlatList
-          data={filteredRecipes}
+          data={recipes}
           renderItem={renderRecipeItem}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}

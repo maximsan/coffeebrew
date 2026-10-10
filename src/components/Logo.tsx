@@ -2,10 +2,8 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import styled from "styled-components/native";
-import { useTheme } from "styled-components/native";
+import { styled, useTheme, DefaultTheme } from "styled-components/native";
 import { StyledProps } from "../theme/styled-components";
-import { DefaultTheme } from "styled-components/native";
 
 interface LogoProps {
   size?: number;
