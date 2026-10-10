@@ -31,6 +31,7 @@ export interface Theme {
     fontFamily: {
       display: string;
       text: string;
+      textMedium: string;
       mono: string;
     };
     fontSize: {

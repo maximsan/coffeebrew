@@ -34,10 +34,9 @@ const TopBar = styled(View)<StyledProps>`
 `;
 
 const CloseLink = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.text};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.textMedium};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: T) => theme.colors.accent.gold};
-  font-weight: 600;
 `;
 
 const Content = styled(ScrollView)<StyledProps>`

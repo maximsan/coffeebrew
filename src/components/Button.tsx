@@ -72,10 +72,9 @@ const ButtonText = styled(Text)<StyledPropsWithVariant>`
         ? theme.colors.text.primary
         : theme.colors.text.onAccent};
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.text};
+    theme.typography.fontFamily.textMedium};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.body}px`};
-  font-weight: 600;
 `;
 
 export const Button: React.FC<ButtonProps> = ({

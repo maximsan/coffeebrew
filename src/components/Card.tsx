@@ -15,8 +15,6 @@ const CARD_ELEVATION: ViewStyle = {
   shadowOpacity: 0.1,
   shadowRadius: 10,
   elevation: 3,
-  borderWidth: 1,
-  borderColor: "rgba(232, 222, 208, 0.9)",
 };
 
 interface CardProps {
@@ -30,6 +28,9 @@ interface CardProps {
 const CardContainer = styled(TouchableOpacity)<StyledProps>`
   background-color: ${({ theme }: { theme: DefaultTheme }) =>
     theme.colors.background.card};
+  border-width: 1px;
+  border-color: ${({ theme }: { theme: DefaultTheme }) =>
+    theme.colors.functional.border};
   border-radius: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.borderRadius.md}px`};
   overflow: hidden;

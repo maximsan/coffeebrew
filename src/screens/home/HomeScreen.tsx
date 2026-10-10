@@ -106,11 +106,10 @@ const SessionHint = styled(Text)<StyledProps>`
 
 const SessionBadge = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.text};
+    theme.typography.fontFamily.textMedium};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.small}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.accent.gold};
-  font-weight: 600;
 `;
 
 const BentoGrid = styled(View)<StyledProps>`
