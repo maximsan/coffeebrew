@@ -35,29 +35,9 @@ Jest is configured with `jest-expo` for service-level tests. `npm run check` is 
 
 ## Architecture
 
-### Entry point and providers
-
-[App.tsx](App.tsx) wraps everything in `SafeAreaProvider` → `ThemeProvider` (styled-components) → `AuthProvider` → `NavigationContainer`. Auth remains a V1 stub; navigation has no auth gate.
-
-### Navigation structure
-
-[src/navigation/Navigation.tsx](src/navigation/Navigation.tsx) — two-tab structure, no auth gate:
-
-- **Home** — HomeStack: `HomeScreen` → `RecipeDetails` → `BrewSession`
-- **More** — `MoreScreen` (placeholder)
-
 ### Recipe data
 
 Curated catalog is bundled JSON at [src/data/recipes.json](src/data/recipes.json) — update recipes by editing this file and shipping a release. `recipeService` loads it at startup via `bundledRecipes` (read-only). User-created recipes are stored separately in AsyncStorage under the key `brew_master_user_recipes_v1`. Built-in recipes cannot be edited or deleted.
-
-### Services (singletons)
-
-All services in `src/services/` are singleton instances:
-
-- **`recipeService`** — merges `bundledRecipes` (from JSON) with user recipes from AsyncStorage. Guards against editing/deleting bundled entries.
-- **`authService`** — stubbed, not used in V1.
-- **`aiService`** — all methods return mock data; placeholder for future integration.
-- **`achievementsService`** — stubbed, out of V1 scope.
 
 ### State management
 
@@ -70,15 +50,6 @@ No global state library in active use. Zustand and React Query are installed but
 ### Validation
 
 Zod schemas live alongside their services (`recipeSchema` in `services/recipes.ts`, `userSchema` in `services/auth.ts`). Validate at service boundaries, not in components.
-
-### App identifiers
-
-| Setting       | Value                |
-| ------------- | -------------------- |
-| Display name  | Brew Master          |
-| iOS bundle id | `com.brewmaster.app` |
-| Expo slug     | `brew-master`        |
-| URL scheme    | `brewmaster`         |
 
 ## Key docs
 
