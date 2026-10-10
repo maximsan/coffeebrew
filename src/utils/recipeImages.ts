@@ -3,7 +3,7 @@ import { BUNDLED_RECIPE_IDS } from "../services/recipes";
 
 const defaultRecipe = require("../../assets/images/recipes/default-recipe.jpg");
 
-/** Static art for each catalog recipe id. Run `npm run download-recipe-images` in `app/` to refresh JPEGs from Unsplash. */
+/** Static art for each catalog recipe id. Run `npm run download-recipe-images` to refresh JPEGs from Unsplash. */
 const CATALOG: Record<string, ImageSourcePropType> = {
   "1": require("../../assets/images/recipes/recipe-01.jpg"),
   "2": require("../../assets/images/recipes/recipe-02.jpg"),

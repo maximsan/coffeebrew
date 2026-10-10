@@ -7,7 +7,7 @@ import { theme } from "./src/theme/theme";
 import { Navigation } from "./src/navigation/Navigation";
 import { AuthProvider } from "./src/store/AuthContext";
 import { View, ActivityIndicator } from "react-native";
-import styled from "styled-components/native";
+import { styled } from "styled-components/native";
 import { useAuth } from "./src/store/AuthContext";
 import { StyledProps } from "./src/theme/styled-components";
 

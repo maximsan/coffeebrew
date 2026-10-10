@@ -1,4 +1,4 @@
-// Postponed past v1 — only non-v1 screens use this; see app/docs/v2_backlog.md
+// Postponed past v1 — only non-v1 screens use this; see docs/v2_backlog.md
 import React from "react";
 import { View, Alert, Platform, PermissionsAndroid } from "react-native";
 import { styled, DefaultTheme } from "styled-components/native";

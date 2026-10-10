@@ -1,4 +1,4 @@
-// Postponed past v1 — not in the v1 navigator; see app/docs/v2_backlog.md
+// Postponed past v1 — not in the v1 navigator; see docs/v2_backlog.md
 import React, { useState, useCallback } from "react";
 import {
   View,

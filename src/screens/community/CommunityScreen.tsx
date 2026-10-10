@@ -1,4 +1,4 @@
-// Postponed past v1 — not in the v1 navigator; see app/docs/v2_backlog.md
+// Postponed past v1 — not in the v1 navigator; see docs/v2_backlog.md
 import React, { useState } from "react";
 import { View, FlatList, TouchableOpacity, Image, Text } from "react-native";
 import { styled, DefaultTheme } from "styled-components/native";

@@ -1,4 +1,4 @@
-// Login/register UI postponed past v1; still used as a stub via AuthContext. See app/docs/v2_backlog.md
+// Login/register UI postponed past v1; still used as a stub via AuthContext. See docs/v2_backlog.md
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { z } from "zod";
 

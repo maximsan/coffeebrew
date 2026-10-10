@@ -1,4 +1,4 @@
-// V1: stub auth only (no login screens). Full accounts postponed — see app/docs/v2_backlog.md
+// V1: stub auth only (no login screens). Full accounts postponed — see docs/v2_backlog.md
 import React, {
   createContext,
   useContext,
