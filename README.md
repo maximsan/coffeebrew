@@ -2,15 +2,17 @@
 
 React Native app for guided coffee brewing. Project root for Metro / Expo is this directory.
 
-**V1 navigation:** two tabs — **Home** (recipes → recipe detail → brew session) and **More** (placeholder). No login required to use the app.
+**[V1](GLOSSARY.md) navigation:** two tabs — **Home** and **More** (placeholder). No login required to use the app.
 
-**Recipe catalog:** bundled JSON at `src/data/recipes.json` (edit + ship with releases). User-created recipes are stored in AsyncStorage separately.
+- **Home:** recipes → recipe detail → brew session → brew complete. Recipe detail also opens dose editing. Home and More both open brew history.
+
+**Recipe catalog:** bundled JSON at `src/data/recipes.json` (edit + ship with releases). V1 has no recipe creation. `recipeService` can store user recipes in AsyncStorage, but no V1 screen uses it.
 
 **Brew history:** Completed sessions are appended to a local log (`brewHistoryService`, key `brew_master_brew_history_v1`). Not synced — device-only. Optional tasting notes are a later feature.
 
-**Polish (v1):** Safe areas for notched devices, 44pt minimum primary button height, basic VoiceOver labels on main actions, alerts when local history save fails, retry on home list load errors. Complete a device smoke pass before wide TestFlight (see checklist Phase 6).
+**Polish (V1):** Safe areas for notched devices, 44pt minimum primary button height, basic VoiceOver labels on main actions, alerts when local history save fails, retry on home list load errors. Complete a device smoke pass before wide TestFlight (see checklist Phase 6).
 
-## Brew timer (v1)
+## Brew timer (V1)
 
 - **Model:** **Countdown** per step. The duration comes from the step’s `time` field (`M:SS` → seconds), with a small floor so the control stays usable on short steps.
 - **Backgrounding:** The UI uses a **wall-clock deadline** (end timestamp). When you come back to the app, remaining time is recomputed from that deadline, so brief interruptions don’t silently “lose” ticks. The OS may still throttle or suspend JS in edge cases—treat the timer as a guide, not a precision instrument.
@@ -27,6 +29,15 @@ npm run start
 ```
 
 That runs the Expo dev server (Metro). Press `i` for iOS Simulator, `a` for Android emulator, or scan the QR code with **Expo Go** on a phone.
+
+Other ways to run the app:
+
+```bash
+npm run start:ios    # Dev server + Expo Go on the iOS simulator
+npm run ios          # Native build with Xcode, then run on the simulator
+```
+
+The native build needs Xcode and several gigabytes of free disk space. It generates an `ios/` folder, which git ignores.
 
 ## Package manager
 
@@ -45,6 +56,7 @@ For focused local checks:
 ```bash
 npm run typecheck
 npm run lint
+npm run lint:fix
 npm run format:check
 npm test -- --runInBand
 npm run doctor
@@ -77,6 +89,7 @@ Icons and splash live in `assets/`. Replace `icon.png`, `splash-icon.png`, and `
 
 ## Related docs
 
+- Project terms: `GLOSSARY.md`
 - V1 scope: `docs/v1_phase0_scope.md`
 - Checklist: `docs/v1_solo_checklist.md`
-- Deferred (post–v1) code index: `docs/v2_backlog.md`
+- Code postponed past V1: `docs/v2_backlog.md`
