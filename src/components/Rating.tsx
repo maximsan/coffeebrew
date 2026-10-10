@@ -1,4 +1,4 @@
-// Postponed past v1 — only non-v1 screens use this; see docs/v2_backlog.md
+// Postponed past V1 — only non-V1 screens use this; see docs/v2_backlog.md
 import React, { useState } from "react";
 
 import { styled, DefaultTheme } from "styled-components/native";

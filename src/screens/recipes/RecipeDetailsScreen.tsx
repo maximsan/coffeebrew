@@ -1,4 +1,4 @@
-// Postponed past v1 — not in the v1 navigator; see docs/v2_backlog.md
+// Postponed past V1 — not in the V1 navigator; see docs/v2_backlog.md
 import React, { useState, useEffect } from "react";
 import {
   View,

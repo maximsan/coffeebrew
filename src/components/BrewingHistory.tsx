@@ -1,4 +1,4 @@
-// Postponed past v1 — only non-v1 screens use this; see docs/v2_backlog.md
+// Postponed past V1 — only non-V1 screens use this; see docs/v2_backlog.md
 import React, { useState, useEffect } from "react";
 import { View, ScrollView, ActivityIndicator } from "react-native";
 import { styled, DefaultTheme, useTheme } from "styled-components/native";

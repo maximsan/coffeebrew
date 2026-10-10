@@ -1,4 +1,4 @@
-// Postponed past v1 — types for deferred recipe/community UI; see docs/v2_backlog.md
+// Postponed past V1 — types for deferred recipe/community UI; see docs/v2_backlog.md
 export interface Comment {
   id: string;
   userId: string;

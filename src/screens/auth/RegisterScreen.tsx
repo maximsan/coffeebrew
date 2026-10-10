@@ -1,4 +1,4 @@
-// Postponed past v1 — not in the v1 navigator; see docs/v2_backlog.md
+// Postponed past V1 — not in the V1 navigator; see docs/v2_backlog.md
 import React, { useState } from "react";
 import { View, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import { styled, DefaultTheme } from "styled-components/native";

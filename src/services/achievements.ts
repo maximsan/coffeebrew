@@ -1,4 +1,4 @@
-// Postponed past v1 — mock service for deferred gamification; see docs/v2_backlog.md
+// Postponed past V1 — mock service for deferred gamification; see docs/v2_backlog.md
 import { z } from "zod";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
