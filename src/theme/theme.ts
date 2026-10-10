@@ -7,7 +7,6 @@ import { Theme } from "./types";
  */
 const shared: Omit<Theme, "colors"> = {
   typography: {
-    /** Keys of the font files loaded in `App.tsx`. */
     fontFamily: {
       display: "Fraunces",
       text: "IBMPlexSans-Regular",
@@ -41,6 +40,7 @@ const shared: Omit<Theme, "colors"> = {
   },
 };
 
+/** Brew-path has no third background or text level, so each `tertiary` repeats `secondary`. */
 export const lightTheme: Theme = {
   ...shared,
   colors: {
@@ -60,9 +60,6 @@ export const lightTheme: Theme = {
     },
     accent: {
       gold: "#A6462F",
-      /** Brew-path's accent wash: the accent at 12% opacity. */
-      goldLight: "rgba(166, 70, 47, 0.12)",
-      goldDark: "#A6462F",
     },
     functional: {
       water: "#5C93B8",
@@ -70,6 +67,7 @@ export const lightTheme: Theme = {
       error: "#A8362A",
       warning: "#9A5F1C",
       border: "#D8CFBF",
+      shadow: "#3D342B",
     },
   },
 };
@@ -93,9 +91,6 @@ export const darkTheme: Theme = {
     },
     accent: {
       gold: "#E07A4F",
-      /** Brew-path's accent wash: the accent at 12% opacity. */
-      goldLight: "rgba(224, 122, 79, 0.12)",
-      goldDark: "#E07A4F",
     },
     functional: {
       water: "#7FB4D6",
@@ -103,6 +98,7 @@ export const darkTheme: Theme = {
       error: "#C75450",
       warning: "#E6A35C",
       border: "#44321E",
+      shadow: "#000000",
     },
   },
 };

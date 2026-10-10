@@ -133,8 +133,8 @@ const WaveDecoration = styled(View)<StyledProps>`
   margin-top: ${({ theme }: T) => `${theme.spacing.lg}px`};
   margin-bottom: ${({ theme }: T) => `${theme.spacing.sm}px`};
   border-radius: 2px;
-  background-color: ${({ theme }: T) => theme.colors.accent.goldLight};
-  opacity: 0.55;
+  background-color: ${({ theme }: T) => theme.colors.accent.gold};
+  opacity: 0.2;
 `;
 
 const Actions = styled(View)<StyledProps>`

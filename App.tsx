@@ -4,14 +4,10 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider, useTheme } from "styled-components/native";
-import {
-  DarkTheme as NavigationDarkTheme,
-  DefaultTheme as NavigationLightTheme,
-  NavigationContainer,
-  type Theme as NavigationTheme,
-} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { darkTheme, lightTheme } from "./src/theme/theme";
-import type { Theme } from "./src/theme/types";
+import { fontFiles } from "./src/theme/fonts";
+import { navigationThemes } from "./src/theme/navigationTheme";
 import { Navigation } from "./src/navigation/Navigation";
 import { AuthProvider } from "./src/store/AuthContext";
 import { View, ActivityIndicator, useColorScheme } from "react-native";
@@ -21,8 +17,6 @@ import { StyledProps } from "./src/theme/styled-components";
 
 SplashScreen.preventAutoHideAsync();
 
-const { fontFamily } = lightTheme.typography;
-
 const LoadingContainer = styled(View)<StyledProps>`
   flex: 1;
   justify-content: center;
@@ -30,23 +24,6 @@ const LoadingContainer = styled(View)<StyledProps>`
   background-color: ${({ theme }: StyledProps) =>
     theme.colors.background.primary};
 `;
-
-/** React Navigation paints screen and header backgrounds from its own theme. */
-const toNavigationTheme = (theme: Theme, isDark: boolean): NavigationTheme => {
-  const base = isDark ? NavigationDarkTheme : NavigationLightTheme;
-  return {
-    ...base,
-    colors: {
-      ...base.colors,
-      primary: theme.colors.accent.gold,
-      background: theme.colors.background.primary,
-      card: theme.colors.background.secondary,
-      text: theme.colors.text.primary,
-      border: theme.colors.functional.border,
-      notification: theme.colors.functional.error,
-    },
-  };
-};
 
 const AppContent = () => {
   const { isLoading } = useAuth();
@@ -66,19 +43,17 @@ const AppContent = () => {
 export default function App() {
   const isDark = useColorScheme() === "dark";
   const theme = isDark ? darkTheme : lightTheme;
-  const [fontsLoaded, fontError] = useFonts({
-    [fontFamily.display]: require("./assets/fonts/Fraunces-Variable.ttf"),
-    [fontFamily.text]: require("./assets/fonts/IBMPlexSans-Regular.ttf"),
-    [fontFamily.textMedium]: require("./assets/fonts/IBMPlexSans-Medium.ttf"),
-    [fontFamily.mono]: require("./assets/fonts/IBMPlexMono-Medium.ttf"),
-  });
+  const [fontsLoaded, fontError] = useFonts(fontFiles);
   const fontsReady = fontsLoaded || fontError !== null;
 
   useEffect(() => {
+    if (fontError) {
+      console.warn("Fonts failed to load; using system fonts.", fontError);
+    }
     if (fontsReady) {
       SplashScreen.hideAsync();
     }
-  }, [fontsReady]);
+  }, [fontsReady, fontError]);
 
   if (!fontsReady) {
     return null;
@@ -89,7 +64,9 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <StatusBar style="auto" />
         <AuthProvider>
-          <NavigationContainer theme={toNavigationTheme(theme, isDark)}>
+          <NavigationContainer
+            theme={isDark ? navigationThemes.dark : navigationThemes.light}
+          >
             <AppContent />
           </NavigationContainer>
         </AuthProvider>

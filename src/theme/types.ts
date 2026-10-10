@@ -1,3 +1,5 @@
+import type { FontName } from "./fonts";
+
 export interface Theme {
   colors: {
     background: {
@@ -16,8 +18,6 @@ export interface Theme {
     };
     accent: {
       gold: string;
-      goldLight: string;
-      goldDark: string;
     };
     functional: {
       water: string;
@@ -25,14 +25,15 @@ export interface Theme {
       error: string;
       warning: string;
       border: string;
+      shadow: string;
     };
   };
   typography: {
     fontFamily: {
-      display: string;
-      text: string;
-      textMedium: string;
-      mono: string;
+      display: FontName;
+      text: FontName;
+      textMedium: FontName;
+      mono: FontName;
     };
     fontSize: {
       h1: number;

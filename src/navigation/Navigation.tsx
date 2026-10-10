@@ -23,9 +23,6 @@ const HomeNavigator = () => {
   return (
     <HomeStack.Navigator
       screenOptions={{
-        headerStyle: {
-          backgroundColor: theme.colors.background.secondary,
-        },
         headerTintColor: theme.colors.text.primary,
         headerTitleStyle: {
           fontFamily: theme.typography.fontFamily.display,
@@ -93,8 +90,6 @@ const TabNavigator = () => {
         tabBarActiveTintColor: theme.colors.accent.gold,
         tabBarInactiveTintColor: theme.colors.text.tertiary,
         tabBarStyle: {
-          backgroundColor: theme.colors.background.secondary,
-          borderTopColor: theme.colors.functional.border,
           borderTopWidth: 1,
           paddingTop: 4,
         },

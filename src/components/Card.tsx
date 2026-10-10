@@ -10,7 +10,6 @@ import { styled, DefaultTheme } from "styled-components/native";
 import { StyledProps } from "../theme/styled-components";
 
 const CARD_ELEVATION: ViewStyle = {
-  shadowColor: "rgb(61, 52, 43)",
   shadowOffset: { width: 0, height: 4 },
   shadowOpacity: 0.1,
   shadowRadius: 10,
@@ -31,6 +30,8 @@ const CardContainer = styled(TouchableOpacity)<StyledProps>`
   border-width: 1px;
   border-color: ${({ theme }: { theme: DefaultTheme }) =>
     theme.colors.functional.border};
+  shadow-color: ${({ theme }: { theme: DefaultTheme }) =>
+    theme.colors.functional.shadow};
   border-radius: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.borderRadius.md}px`};
   overflow: hidden;
