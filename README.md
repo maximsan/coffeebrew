@@ -2,15 +2,13 @@
 
 React Native app for guided coffee brewing. Project root for Metro / Expo is this directory.
 
-**[V1](GLOSSARY.md) navigation:** two tabs — **Home** and **More** (placeholder). No login required to use the app.
+**[V1](GLOSSARY.md) navigation:** two tabs — **Home** and **More**. No login required to use the app.
 
 - **Home:** recipes → recipe detail → brew session → brew complete. Recipe detail also opens dose editing. Home and More both open brew history.
 
 **Recipe catalog:** bundled JSON at `src/data/recipes.json` (edit + ship with releases). V1 has no recipe creation. `recipeService` can store user recipes in AsyncStorage, but no V1 screen uses it.
 
 **Brew history:** Completed sessions are appended to a local log (`brewHistoryService`, key `brew_master_brew_history_v1`). Not synced — device-only. Optional tasting notes are a later feature.
-
-**Polish (V1):** Safe areas for notched devices, 44pt minimum primary button height, basic VoiceOver labels on main actions, alerts when local history save fails, retry on home list load errors. Complete a device smoke pass before wide TestFlight (see checklist Phase 6).
 
 ## Brew timer (V1)
 
@@ -61,8 +59,6 @@ npm run format:check
 npm test -- --runInBand
 npm run doctor
 ```
-
-Uses TypeScript **strict** mode (`tsconfig.json`).
 
 ## Run on a physical iPhone (Phase 1)
 

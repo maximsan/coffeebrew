@@ -33,8 +33,8 @@ Ship v1 **without** the following. Revisit any item only after the core brew →
 
 **Decision:**
 
-1. **Recipe catalog:** **Bundled static data** (e.g. `src/data/recipes.json` or a TypeScript module). Shipped with the app; no CMS in v1. Update recipes by app releases until you add a server.
-2. **Brew history:** `**AsyncStorage`** (or SQLite later if needed) — append-only log: recipe id, timestamps, optional notes/rating. **Device-local only.\*\*
+1. **Recipe catalog:** **Bundled static data** in `src/data/recipes.json`. Shipped with the app; no CMS in v1. Update recipes by app releases until you add a server.
+2. **Brew history:** **AsyncStorage** (or SQLite later if needed) — a capped log of completed brews: recipe, timestamps, dose, step count. **Device-local only.**
 3. **User-edited recipes:** **Out of v1** — users do not create or edit recipe definitions in the app for v1.
 
 This matches “curated content + persistence for what the user actually did,” without pretending to support UGC or sync.
@@ -44,7 +44,7 @@ This matches “curated content + persistence for what the user actually did,”
 ## Phase 0 checklist (complete)
 
 - One-paragraph v1 product sentence — see above
-- Explicit out-of-v1 list — see table + bullets
+- Explicit out-of-v1 list — see table
 - Data approach — bundled recipes + local history store; no recipe editing in v1
 
 ---

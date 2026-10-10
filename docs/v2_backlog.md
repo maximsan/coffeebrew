@@ -1,8 +1,10 @@
-# Postponed past v1 (backlog)
+# Postponed past V1 (backlog)
 
-Code under `app/src/` that is **not mounted** in the v1 navigator (`src/navigation/Navigation.tsx`) or **only exists to support that deferred UI** is labeled with a one-line header in the file: _Postponed past v1 — … see `app/docs/v2_backlog.md`_.
+Code under `src/` that is **not mounted** in the V1 navigator (`src/navigation/Navigation.tsx`) or **only exists to support that deferred UI** is labeled with a one-line header in the file: _Postponed past v1 — … see `docs/v2_backlog.md`_.
 
 **V1 product slice** is defined in `v1_phase0_scope.md` and tracked in `v1_solo_checklist.md`.
+
+Product ideas for two postponed areas: [AI](design/ai_integration.md) and [gamification](design/gamification_system.md).
 
 ---
 
@@ -61,7 +63,7 @@ Code under `app/src/` that is **not mounted** in the v1 navigator (`src/navigati
 
 ## Navigation types (legacy param lists)
 
-In `src/navigation/types.ts`, `AuthStackParamList`, `RecipesStackParamList`, `CommunityStackParamList`, and `ProfileStackParamList` remain for **type-checking deferred screens** if you re-mount them later. They are **not** used by the v1 tab/stack navigator.
+In `src/navigation/types.ts`, `RootStackParamList`, `AuthStackParamList`, `RecipesStackParamList`, `CommunityStackParamList`, and `ProfileStackParamList` remain for **type-checking deferred screens** if you re-mount them later. They are **not** used by the v1 tab/stack navigator.
 
 ---
 

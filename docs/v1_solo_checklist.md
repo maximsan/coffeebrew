@@ -1,8 +1,6 @@
 # V1 solo checklist — Brew Master
 
-Use this as the single source of “what ships in v1.” Adjust dates to your calendar; order matters more than week labels.
-
-**V1 definition:** Curated brew recipes → step-by-step flow → reliable timer → optional local brew history. **Target: iOS first** (Android after v1 feels solid).
+Tracks progress toward [V1](../GLOSSARY.md). Scope is locked in `docs/v1_phase0_scope.md`. Adjust dates to your calendar; order matters more than week labels.
 
 ---
 
@@ -10,47 +8,47 @@ Use this as the single source of “what ships in v1.” Adjust dates to your ca
 
 **Completed — see `docs/v1_phase0_scope.md`.**
 
-- Write a one-paragraph **v1 product sentence** (who it’s for, one job-to-be-done).
-- List **explicitly out of v1**: community tab, AI screens, gamification, accounts (or keep “account later” as a decision).
-- Choose **data approach for v1**: bundled JSON recipes only, or bundled + AsyncStorage edits (pick one).
+- [x] Write a one-paragraph **v1 product sentence** (who it’s for, one job-to-be-done).
+- [x] List **explicitly out of v1**: community tab, AI screens, gamification, accounts (or keep “account later” as a decision).
+- [x] Choose **data approach for v1**: bundled JSON recipes only, or bundled + AsyncStorage edits (pick one).
 
 ---
 
 ## Phase 1 — Project hygiene & iOS runway
 
-**Repo done:** `app/app.json` (display name Brew Master, slug `brew-master`, scheme `brewmaster`, iOS `bundleIdentifier` + Android `package` `com.brewmaster.app`, dark splash `#121212`), `app/README.md`, `npm run typecheck`, `tsconfig` includes root entry files, strict TypeScript passes.
+**Repo done:** `app.json` (display name Brew Master, slug `brew-master`, scheme `brewmaster`, iOS `bundleIdentifier` + Android `package` `com.brewmaster.app`, light splash `#FAF6EF`), `README.md`, `npm run typecheck`, `tsconfig` includes root entry files, strict TypeScript passes.
 
-- Confirm **Expo SDK / RN** run on a physical **iPhone** (not only simulator) — _do this on your device_.
-- Set **app name, bundle id, icon, splash** so TestFlight is possible later.
-- Turn on **TypeScript strict** if not already; fix any easy errors in files you touch.
-- Add **one command** you always use: `npm run start` (or `npx expo start`) documented in `app/README.md` (create if missing).
+- [ ] Confirm **Expo SDK / RN** run on a physical **iPhone** (not only simulator) — _do this on your device_.
+- [x] Set **app name, bundle id, icon, splash** so TestFlight is possible later.
+- [x] Turn on **TypeScript strict** if not already; fix any easy errors in files you touch.
+- [x] Add **one command** you always use: `npm run start` (or `npx expo start`) documented in `README.md`.
 
 ---
 
 ## Phase 2 — Navigation: one happy path
 
-**Completed in repo:** Tabs are **Home** + **More** (`MoreScreen` placeholder). **Auth gate removed** — app opens on the main tabs (v1 scope: no required login). Flow: `HomeScreen` → `RecipeDetails` → `BrewSession` (`src/navigation/Navigation.tsx`, `src/screens/home/*`). Stack headers on recipe + brew for system back. Single `NavigationContainer` in `App.tsx` only.
+**Completed in repo:** Tabs are **Home** + **More** (`MoreScreen` links to brew history). **Auth gate removed** — app opens on the main tabs (v1 scope: no required login). Flow: `HomeScreen` → `RecipeDetails` (→ `EditDose`) → `BrewSession` → `BrewComplete`; `History` from Home or More (`src/navigation/Navigation.tsx`, `src/screens/home/*`). Stack headers on recipe + brew for system back. Single `NavigationContainer` in `App.tsx` only.
 
-- **Hide or remove** tabs not in v1 (e.g. Community, Create, Profile sub-menus) — or replace with a single “More / Settings” placeholder.
-- **Home** → recipe list (or featured + list) → **recipe detail** → **brew session** (new screen or modal).
-- **Back navigation** works everywhere in that path (no dead ends).
-- **No duplicate `NavigationContainer`** (keep a single root container in `App.tsx`).
+- [x] **Hide or remove** tabs not in v1 (e.g. Community, Create, Profile sub-menus) — or replace with a single “More / Settings” placeholder.
+- [x] **Home** → recipe list (or featured + list) → **recipe detail** → **brew session** (new screen or modal).
+- [x] **Back navigation** works everywhere in that path (no dead ends).
+- [x] **No duplicate `NavigationContainer`** (keep a single root container in `App.tsx`).
 
 ---
 
 ## Phase 3 — Recipe content (curated, boring, correct)
 
-**Completed in repo:** `app/src/data/recipes.json` has **14** curated recipes (steps with time hints, `brewMethod`, descriptions). Images use **Unsplash** URLs (no `example.com`). `recipeService` loads the catalog from that file, persists **user-created** recipes separately (`brew_master_user_recipes_v1`), removes legacy `recipes` AsyncStorage, and blocks edit/delete of built-in ids. List/detail screens already use `recipeService` only.
+**Completed in repo:** `src/data/recipes.json` holds the curated recipes (steps with time hints, `brewMethod`, descriptions). Images are bundled JPEGs in `assets/images/recipes/` (refresh with `npm run download-recipe-images`). `recipeService` loads the catalog from that file, persists **user-created** recipes separately (`brew_master_user_recipes_v1`), removes legacy `recipes` AsyncStorage, and blocks edit/delete of built-in ids. List/detail screens already use `recipeService` only.
 
-- **10–20 recipes** in one module (e.g. `src/data/recipes.json` or TS constant) with: title, method, steps with **time hints**, short description.
-- **No dependency** on mock `https://example.com` images — use local assets or a stable CDN; **placeholder** if needed.
-- Wire **recipe list + detail** to this data only (remove or bypass extra mock layers if confusing).
+- [x] **10–20 recipes** in one module (e.g. `src/data/recipes.json` or TS constant) with: title, method, steps with **time hints**, short description.
+- [x] **No dependency** on mock `https://example.com` images — use local assets or a stable CDN; **placeholder** if needed.
+- [x] Wire **recipe list + detail** to this data only (remove or bypass extra mock layers if confusing).
 
 ---
 
 ## Phase 4 — Brew session + timer (core value)
 
-**Completed in repo:** Brew screen shows current step, **Next step** preview card (time + text), hint, **countdown** `BrewTimer` (deadline-based, resync on foreground — see `app/README.md`). Countdown does not auto-start; at **zero** the flow **advances automatically**. Optional **Skip ahead** / **Finish early** (outline) + haptics (`expo-haptics`). Timer completion uses notification haptic (+ vibration fallback).
+**Completed in repo:** Brew screen shows current step, **Next step** preview card (time + text), hint, **countdown** `BrewTimer` (deadline-based, resync on foreground — see `README.md`). Countdown does not auto-start; at **zero** the flow **advances automatically**. Optional **Skip ahead** / **Finish early** (outline) + haptics (`expo-haptics`). Timer completion uses notification haptic (+ vibration fallback).
 
 - [x] **Brew screen** shows **current step**, **next step** preview, and **primary action** (Next / Finish).
 - [x] Integrate **BrewTimer** (or replace) so timing matches your step model (count-up vs count-down — pick one and document it).
@@ -61,7 +59,7 @@ Use this as the single source of “what ships in v1.” Adjust dates to your ca
 
 ## Phase 5 — History (local only)
 
-**Completed in repo:** `brewHistoryService` (`src/services/brewHistory.ts`) persists to AsyncStorage (`brew_master_brew_history_v1`, max **120** entries). Each completed session saves **recipeId**, title, method, **startedAt** / **finishedAt** (ISO), dose + step count. **BrewCompleteScreen** writes once per completion; **Home** shows last **3** + “View all”; **History** screen lists all with pull-to-refresh; **More** links to History. Navigation: `MainTabParamList.Home` uses `NavigatorScreenParams<HomeStackParamList>`; stack includes **History**.
+**Completed in repo:** `brewHistoryService` (`src/services/brewHistory.ts`) persists to AsyncStorage (`brew_master_brew_history_v1`, capped at `MAX_BREW_HISTORY_ENTRIES`). Each completed session saves **recipeId**, title, method, **startedAt** / **finishedAt** (ISO), dose + step count. **BrewCompleteScreen** writes once per completion; **Home** shows the most recent brews + “View all”; **History** screen lists all with pull-to-refresh; **More** links to History. Navigation: `MainTabParamList.Home` uses `NavigatorScreenParams<HomeStackParamList>`; stack includes **History**.
 
 - [x] **Save** a log entry: recipe id, started/finished time (and outcome optional).
 - [x] **List** recent brews on a simple “History” screen or home section.
@@ -85,8 +83,8 @@ Use this as the single source of “what ships in v1.” Adjust dates to your ca
 
 Skip entire phase if v1 is **local-only**.
 
-- If accounts: **one** provider (e.g. Sign in with Apple + email) — not three.
-- If no accounts: remove fake **login wall** so users aren’t blocked (or keep as optional “sync later” placeholder without blocking).
+- [ ] If accounts: **one** provider (e.g. Sign in with Apple + email) — not three.
+- [x] If no accounts: remove fake **login wall** so users aren’t blocked — done: the app opens on the tabs, with no auth gate.
 
 ---
 
@@ -121,12 +119,7 @@ Check these off as you go — don’t block shipping on reading everything.
 
 ## Stop-the-line rules (avoid scope creep)
 
-If you catch yourself doing any of these, pause and move it to **v2**:
-
-- Real-time community, comments, or feeds.
-- AI or “smart” recommendations tied to a paid API.
-- Full recipe editor with image upload to a server.
-- Perfect cross-device sync before anyone uses v1.
+If you catch yourself building anything from the out-of-V1 table in `docs/v1_phase0_scope.md`, pause and add it to `docs/v2_backlog.md` instead.
 
 ---
 

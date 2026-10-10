@@ -1,5 +1,7 @@
 # AI Integration for Brew Master App
 
+Idea for after V1, not built. The app's matching mock code is listed in [docs/v2_backlog.md](../v2_backlog.md).
+
 ## Core AI Capabilities
 
 ### Taste Profile Analysis
