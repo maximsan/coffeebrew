@@ -1,4 +1,4 @@
-// Postponed past v1 — mock service for deferred AI UI; see app/docs/v2_backlog.md
+// Postponed past V1 — mock service for deferred AI UI; see docs/v2_backlog.md
 import { Recipe } from "./recipes";
 import { z } from "zod";
 

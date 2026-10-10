@@ -1,4 +1,4 @@
-// Postponed past v1 — unused by v1 UI path today; see app/docs/v2_backlog.md
+// Postponed past V1 — unused by V1 UI path today; see docs/v2_backlog.md
 import React, { useEffect } from "react";
 import {
   Modal as RNModal,

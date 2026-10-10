@@ -1,4 +1,4 @@
-// Postponed past v1 — not in the v1 navigator; see app/docs/v2_backlog.md
+// Postponed past V1 — not in the V1 navigator; see docs/v2_backlog.md
 import React from "react";
 import { FlatList } from "react-native";
 import { styled } from "styled-components/native";

@@ -1,5 +1,7 @@
 # Gamification & Engagement System for Brew Master
 
+Idea for after V1, not built. The app's matching mock code is listed in [docs/v2_backlog.md](../v2_backlog.md).
+
 ## Core Gamification Elements
 
 ### Experience Points (XP) System

@@ -1,14 +1,12 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { ThemeProvider } from "styled-components/native";
+import { ThemeProvider, styled } from "styled-components/native";
 import { NavigationContainer } from "@react-navigation/native";
 import { theme } from "./src/theme/theme";
 import { Navigation } from "./src/navigation/Navigation";
-import { AuthProvider } from "./src/store/AuthContext";
+import { AuthProvider, useAuth } from "./src/store/AuthContext";
 import { View, ActivityIndicator } from "react-native";
-import styled from "styled-components/native";
-import { useAuth } from "./src/store/AuthContext";
 import { StyledProps } from "./src/theme/styled-components";
 
 const LoadingContainer = styled(View)<StyledProps>`
