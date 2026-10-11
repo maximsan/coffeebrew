@@ -9,13 +9,6 @@ import {
 import { styled, DefaultTheme } from "styled-components/native";
 import { StyledProps } from "../theme/styled-components";
 
-const CARD_ELEVATION: ViewStyle = {
-  shadowOffset: { width: 0, height: 4 },
-  shadowOpacity: 0.1,
-  shadowRadius: 10,
-  elevation: 3,
-};
-
 interface CardProps {
   children: React.ReactNode;
   onPress?: () => void;
@@ -31,7 +24,11 @@ const CardContainer = styled(TouchableOpacity)<StyledProps>`
   border-color: ${({ theme }: { theme: DefaultTheme }) =>
     theme.colors.functional.border};
   shadow-color: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.colors.functional.shadow};
+    theme.overlays.shadow};
+  shadow-offset: 0px 4px;
+  shadow-opacity: 0.1;
+  shadow-radius: 10px;
+  elevation: 3;
   border-radius: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.borderRadius.md}px`};
   overflow: hidden;
@@ -58,7 +55,7 @@ export const Card: React.FC<CardProps> = ({
     <CardContainer
       onPress={onPress}
       disabled={!onPress}
-      style={[CARD_ELEVATION, style]}
+      style={style}
       accessibilityRole={onPress ? "button" : undefined}
       accessibilityHint={onPress ? "Opens recipe details" : undefined}
     >

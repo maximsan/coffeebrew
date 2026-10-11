@@ -25,13 +25,12 @@ export interface Theme {
       error: string;
       warning: string;
       border: string;
-      shadow: string;
     };
   };
   typography: {
     fontFamily: {
-      display: FontName;
-      displaySmall: FontName;
+      heading: FontName;
+      serifText: FontName;
       text: FontName;
       textMedium: FontName;
       mono: FontName;
@@ -56,14 +55,10 @@ export interface Theme {
     md: number;
     lg: number;
   };
-  /** Overlays that look the same in both modes. */
+  /** Colours drawn over or under surfaces, the same in both modes. */
   overlays: {
     /** Dims the screen behind a modal. */
     modalDim: string;
-  };
-  shadows: {
-    small: string;
-    medium: string;
-    large: string;
+    shadow: string;
   };
 }

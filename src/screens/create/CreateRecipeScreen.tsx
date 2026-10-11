@@ -37,7 +37,7 @@ const FormGroup = styled.View<StyledProps>`
 
 const Label = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: StyledProps) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
@@ -73,7 +73,7 @@ const StepHeader = styled.View<StyledProps>`
 
 const StepTitle = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
 `;
@@ -140,7 +140,7 @@ const ButtonText = styled.Text<
   { variant: "primary" | "secondary" } & StyledProps
 >`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: StyledProps) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({
@@ -154,7 +154,7 @@ const ButtonText = styled.Text<
 
 const SectionTitle = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
   margin-bottom: ${({ theme }: StyledProps) => `${theme.spacing.md}px`};

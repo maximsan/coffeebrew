@@ -23,7 +23,7 @@ const Content = styled(ScrollView)<StyledProps>`
 
 const Title = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h1}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -67,7 +67,7 @@ const LinkRowLeft = styled(View)`
 
 const LinkTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.displaySmall};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};

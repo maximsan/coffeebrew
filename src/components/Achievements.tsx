@@ -14,13 +14,24 @@ import {
   Achievement,
   Badge,
 } from "../services/achievements";
+import { lightTheme } from "../theme/theme";
 
-/** Literal metal colours, the same in both moods, like brew-path's illustration palette. */
-const MEDAL_COLORS = {
-  bronze: "#CD7F32",
-  silver: "#C0C0C0",
-  platinum: "#E5E4E2",
-};
+/**
+ * Metal colours stay the same in both modes, like brew-path's illustration palette,
+ * so their icons use the light mode's ink, which reads on all three metals.
+ * Gold follows the accent and changes with the mode.
+ */
+const medalColors = (
+  theme: DefaultTheme,
+): Record<Badge["level"], { background: string; icon: string }> => ({
+  bronze: { background: "#CD7F32", icon: lightTheme.colors.text.primary },
+  silver: { background: "#C0C0C0", icon: lightTheme.colors.text.primary },
+  gold: {
+    background: theme.colors.accent.gold,
+    icon: theme.colors.text.onAccent,
+  },
+  platinum: { background: "#E5E4E2", icon: lightTheme.colors.text.primary },
+});
 
 interface AchievementsProps {
   onClose?: () => void;
@@ -45,7 +56,7 @@ const Header = styled(View)`
 
 const Title = styled(Text)`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -93,7 +104,7 @@ const Section = styled(View)`
 
 const SectionTitle = styled(Text)`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -119,7 +130,7 @@ const StatItem = styled.View`
 
 const StatValue = styled.Text`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.accent.gold};
@@ -217,7 +228,7 @@ const BadgeItem = styled.View`
     `${theme.borderRadius.md}px`};
 `;
 
-const BadgeIcon = styled.View<{ level: string }>`
+const BadgeIcon = styled.View<{ level: Badge["level"] }>`
   width: 60px;
   height: 60px;
   border-radius: 30px;
@@ -226,21 +237,8 @@ const BadgeIcon = styled.View<{ level: string }>`
     level,
   }: {
     theme: DefaultTheme;
-    level: string;
-  }) => {
-    switch (level) {
-      case "bronze":
-        return MEDAL_COLORS.bronze;
-      case "silver":
-        return MEDAL_COLORS.silver;
-      case "gold":
-        return theme.colors.accent.gold;
-      case "platinum":
-        return MEDAL_COLORS.platinum;
-      default:
-        return theme.colors.accent.gold;
-    }
-  }};
+    level: Badge["level"];
+  }) => medalColors(theme)[level].background};
   align-items: center;
   justify-content: center;
   margin-bottom: ${({ theme }: { theme: DefaultTheme }) =>
@@ -352,7 +350,7 @@ export const Achievements: React.FC<AchievementsProps> = ({ onClose }) => {
             size={30}
             color={
               badge.isUnlocked
-                ? theme.colors.text.onAccent
+                ? medalColors(theme)[badge.level].icon
                 : theme.colors.text.tertiary
             }
           />

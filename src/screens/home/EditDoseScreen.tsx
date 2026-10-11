@@ -51,13 +51,13 @@ const HeaderBtn = styled(Text)<StyledProps>`
 `;
 
 const HeaderTitle = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.display};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: T) => theme.colors.text.primary};
 `;
 
 const SectionTitle = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.display};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: T) => theme.colors.text.primary};
   margin-bottom: ${({ theme }: T) => `${theme.spacing.md}px`};
@@ -91,7 +91,7 @@ const ValueUnit = styled(View)<StyledProps>`
 `;
 
 const ValueNum = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.display};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: T) => theme.colors.text.primary};
 `;
@@ -128,7 +128,7 @@ const RatioRow = styled(View)<StyledProps>`
 `;
 
 const RatioText = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.display};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: T) => theme.colors.accent.gold};
 `;

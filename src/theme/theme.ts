@@ -1,7 +1,7 @@
 import { Theme } from "./types";
 
 /**
- * Brew-path's design system in two moods: Cupping (light) and Dark Roast (dark).
+ * Brew-path's design system in two modes: Cupping (light) and Dark Roast (dark).
  * Values come from brew-path's running prototype (`prototype/index.html`),
  * which wins over its app code where the two disagree.
  */
@@ -9,9 +9,9 @@ const shared: Omit<Theme, "colors"> = {
   typography: {
     fontFamily: {
       /** Fraunces cut at optical size 24, for headings (19–30px). */
-      display: "Fraunces-24pt",
+      heading: "Fraunces-24pt",
       /** Fraunces at its default optical size 9, for body and small text. */
-      displaySmall: "Fraunces",
+      serifText: "Fraunces",
       text: "IBMPlexSans-Regular",
       textMedium: "IBMPlexSans-Medium",
       mono: "IBMPlexMono-Medium",
@@ -37,13 +37,10 @@ const shared: Omit<Theme, "colors"> = {
     lg: 20,
   },
   overlays: {
-    /** Brew-path's modal dim: #0E0A07 at 62%, in both moods. */
+    /** Brew-path's modal dim: #0E0A07 at 62%. */
     modalDim: "rgba(14, 10, 7, 0.62)",
-  },
-  shadows: {
-    small: "0 2px 8px rgba(61, 52, 43, 0.08)",
-    medium: "0 4px 16px rgba(61, 52, 43, 0.1)",
-    large: "0 8px 24px rgba(61, 52, 43, 0.12)",
+    /** Brew-path draws every shadow in black; each component sets its own opacity. */
+    shadow: "#000000",
   },
 };
 
@@ -74,7 +71,6 @@ export const lightTheme: Theme = {
       error: "#A8362A",
       warning: "#9A5F1C",
       border: "#D8CFBF",
-      shadow: "#3D342B",
     },
   },
 };
@@ -105,7 +101,6 @@ export const darkTheme: Theme = {
       error: "#C75450",
       warning: "#E6A35C",
       border: "#44321E",
-      shadow: "#000000",
     },
   },
 };

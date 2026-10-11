@@ -23,6 +23,7 @@ const toNavigationTheme = (
       border: theme.colors.functional.border,
       notification: theme.colors.functional.error,
     },
+    /** Each weight is its own font file, so `fontWeight` stays normal to stop iOS faking a bolder one. */
     fonts: {
       regular: { fontFamily: text, fontWeight: "normal" },
       medium: { fontFamily: textMedium, fontWeight: "normal" },

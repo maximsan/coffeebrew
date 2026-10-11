@@ -47,7 +47,7 @@ const Section = styled(View)<StyledProps>`
 const ScreenTitle = styled.Text<StyledProps>`
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h1}px`};
   margin-bottom: ${({ theme }: { theme: DefaultTheme }) =>
@@ -88,7 +88,7 @@ const SessionCopy = styled(View)<StyledProps>`
 
 const SessionTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.displaySmall};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -135,7 +135,7 @@ const BentoTile = styled(TouchableOpacity)<StyledProps>`
 
 const BentoTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -155,7 +155,7 @@ const BentoHint = styled(Text)<StyledProps>`
 const SectionTitle = styled.Text<StyledProps>`
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h2}px`};
   margin-bottom: ${({ theme }: { theme: DefaultTheme }) =>
@@ -228,7 +228,7 @@ const OrbLabel = styled(Text)<StyledProps>`
 const RecipeTitle = styled(Text)<StyledProps>`
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h3}px`};
   margin-bottom: ${({ theme }: { theme: DefaultTheme }) =>
@@ -291,7 +291,7 @@ const RecentRow = styled(TouchableOpacity)<StyledProps>`
 
 const RecentTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.displaySmall};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};

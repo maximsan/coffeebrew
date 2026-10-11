@@ -25,7 +25,7 @@ const HomeNavigator = () => {
       screenOptions={{
         headerTintColor: theme.colors.text.primary,
         headerTitleStyle: {
-          fontFamily: theme.typography.fontFamily.display,
+          fontFamily: theme.typography.fontFamily.heading,
         },
         headerShadowVisible: false,
       }}
@@ -87,7 +87,6 @@ const TabNavigator = () => {
             <Ionicons name={iconName as never} size={size} color={color} />
           );
         },
-        tabBarActiveTintColor: theme.colors.accent.gold,
         tabBarInactiveTintColor: theme.colors.text.tertiary,
         tabBarStyle: {
           borderTopWidth: 1,

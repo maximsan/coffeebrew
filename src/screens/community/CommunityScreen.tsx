@@ -25,7 +25,7 @@ const Header = styled(View)<StyledProps>`
 
 const Title = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h1}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -70,7 +70,7 @@ const UserInfo = styled(View)<StyledProps>`
 const UserName = styled(Text)<StyledProps>`
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.body}px`};
 `;

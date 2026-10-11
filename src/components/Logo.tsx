@@ -29,10 +29,9 @@ const LogoContainer = styled(View)<StyledLogoProps>`
 
 const LogoText = styled(Text)<StyledLogoProps>`
   font-family: ${({ theme }: StyledLogoProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ size }: StyledLogoProps) => size * 0.4}px;
   color: ${({ theme }: StyledLogoProps) => theme.colors.accent.gold};
-  font-weight: bold;
 `;
 
 export const Logo: React.FC<LogoProps> = ({ size = 120, color }) => {

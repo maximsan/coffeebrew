@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   header: {
-    fontSize: 20,
     marginBottom: 8,
   },
   item: {
@@ -45,14 +44,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userName: {
-    fontSize: 16,
     marginBottom: 4,
   },
-  commentText: {
-    fontSize: 16,
-  },
   date: {
-    fontSize: 14,
     marginTop: 4,
   },
   deleteButton: {
@@ -77,7 +71,9 @@ const StyledContainer = styled(View)<StyledProps>`
 
 const StyledHeader = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
+  font-size: ${({ theme }: { theme: DefaultTheme }) =>
+    `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
 `;
 
@@ -88,17 +84,23 @@ const StyledItem = styled(View)<StyledProps>`
 
 const StyledUserName = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.serifText};
+  font-size: ${({ theme }: { theme: DefaultTheme }) =>
+    `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
 `;
 
 const StyledCommentText = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
     theme.typography.fontFamily.text};
+  font-size: ${({ theme }: { theme: DefaultTheme }) =>
+    `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
 `;
 
 const StyledDate = styled(Text)<StyledProps>`
+  font-size: ${({ theme }: { theme: DefaultTheme }) =>
+    `${theme.typography.fontSize.small}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.secondary};
 `;
 
@@ -121,9 +123,11 @@ const StyledAddButton = styled(TouchableOpacity)<StyledProps>`
 `;
 
 const StyledAddButtonText = styled(Text)<StyledProps>`
-  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
+  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.onAccent};
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.serifText};
+  font-size: ${({ theme }: { theme: DefaultTheme }) =>
+    `${theme.typography.fontSize.body}px`};
 `;
 
 export const Comments: React.FC<CommentsProps> = ({
@@ -161,9 +165,7 @@ export const Comments: React.FC<CommentsProps> = ({
       )}
       <View style={styles.content}>
         <StyledUserName style={styles.userName}>{item.userName}</StyledUserName>
-        <StyledCommentText style={styles.commentText}>
-          {item.text}
-        </StyledCommentText>
+        <StyledCommentText>{item.text}</StyledCommentText>
         <StyledDate style={styles.date}>
           {formatDate(item.createdAt)}
         </StyledDate>
