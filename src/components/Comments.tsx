@@ -9,7 +9,7 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
-import { styled, DefaultTheme } from "styled-components/native";
+import { styled, DefaultTheme, useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { StyledProps } from "../theme/styled-components";
 import type { Comment } from "../types/comment";
@@ -132,6 +132,7 @@ export const Comments: React.FC<CommentsProps> = ({
   onAddComment,
   onDeleteComment,
 }) => {
+  const theme = useTheme();
   const [newComment, setNewComment] = useState("");
 
   const handleAddComment = () => {
@@ -151,7 +152,11 @@ export const Comments: React.FC<CommentsProps> = ({
         <Image source={{ uri: item.userAvatar }} style={styles.avatar} />
       ) : (
         <View style={styles.avatar}>
-          <Ionicons name="person-circle-outline" size={40} color="#999" />
+          <Ionicons
+            name="person-circle-outline"
+            size={40}
+            color={theme.colors.text.tertiary}
+          />
         </View>
       )}
       <View style={styles.content}>
@@ -188,7 +193,7 @@ export const Comments: React.FC<CommentsProps> = ({
       <StyledInput
         style={styles.input}
         placeholder="Add a comment..."
-        placeholderTextColor="#999"
+        placeholderTextColor={theme.colors.text.tertiary}
         value={newComment}
         onChangeText={setNewComment}
         multiline

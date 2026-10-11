@@ -15,6 +15,13 @@ import {
   Badge,
 } from "../services/achievements";
 
+/** Literal metal colours, the same in both moods, like brew-path's illustration palette. */
+const MEDAL_COLORS = {
+  bronze: "#CD7F32",
+  silver: "#C0C0C0",
+  platinum: "#E5E4E2",
+};
+
 interface AchievementsProps {
   onClose?: () => void;
 }
@@ -223,13 +230,13 @@ const BadgeIcon = styled.View<{ level: string }>`
   }) => {
     switch (level) {
       case "bronze":
-        return "#CD7F32";
+        return MEDAL_COLORS.bronze;
       case "silver":
-        return "#C0C0C0";
+        return MEDAL_COLORS.silver;
       case "gold":
         return theme.colors.accent.gold;
       case "platinum":
-        return "#E5E4E2";
+        return MEDAL_COLORS.platinum;
       default:
         return theme.colors.accent.gold;
     }
@@ -316,7 +323,11 @@ export const Achievements: React.FC<AchievementsProps> = ({ onClose }) => {
     return (
       <AchievementItem key={achievement.id}>
         <AchievementIcon>
-          <Ionicons name={achievement.icon as any} size={24} color="#FFFFFF" />
+          <Ionicons
+            name={achievement.icon as any}
+            size={24}
+            color={theme.colors.text.onAccent}
+          />
         </AchievementIcon>
         <AchievementInfo>
           <AchievementTitle>{achievement.title}</AchievementTitle>
@@ -339,7 +350,11 @@ export const Achievements: React.FC<AchievementsProps> = ({ onClose }) => {
           <Ionicons
             name={badge.icon as any}
             size={30}
-            color={badge.isUnlocked ? "#FFFFFF" : "#CCCCCC"}
+            color={
+              badge.isUnlocked
+                ? theme.colors.text.onAccent
+                : theme.colors.text.tertiary
+            }
           />
         </BadgeIcon>
         <BadgeTitle>{badge.title}</BadgeTitle>
@@ -360,7 +375,11 @@ export const Achievements: React.FC<AchievementsProps> = ({ onClose }) => {
     if (achievements.length === 0) {
       return (
         <EmptyState>
-          <Ionicons name="trophy-outline" size={48} color="#CCCCCC" />
+          <Ionicons
+            name="trophy-outline"
+            size={48}
+            color={theme.colors.text.tertiary}
+          />
           <EmptyStateText>
             No achievements available yet. Start brewing to earn achievements!
           </EmptyStateText>
@@ -430,7 +449,11 @@ export const Achievements: React.FC<AchievementsProps> = ({ onClose }) => {
     if (badges.length === 0) {
       return (
         <EmptyState>
-          <Ionicons name="ribbon-outline" size={48} color="#CCCCCC" />
+          <Ionicons
+            name="ribbon-outline"
+            size={48}
+            color={theme.colors.text.tertiary}
+          />
           <EmptyStateText>
             No badges available yet. Complete achievements to earn badges!
           </EmptyStateText>

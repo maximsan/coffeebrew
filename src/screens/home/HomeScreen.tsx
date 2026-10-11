@@ -88,7 +88,7 @@ const SessionCopy = styled(View)<StyledProps>`
 
 const SessionTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.displaySmall};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -291,7 +291,7 @@ const RecentRow = styled(TouchableOpacity)<StyledProps>`
 
 const RecentTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.displaySmall};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};

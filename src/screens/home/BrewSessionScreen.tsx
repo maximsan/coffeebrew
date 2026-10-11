@@ -90,7 +90,7 @@ const NextPreview = styled(View)<StyledProps>`
 
 const NextLabel = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.displaySmall};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.small}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.accent.gold};

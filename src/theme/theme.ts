@@ -8,7 +8,10 @@ import { Theme } from "./types";
 const shared: Omit<Theme, "colors"> = {
   typography: {
     fontFamily: {
-      display: "Fraunces",
+      /** Fraunces cut at optical size 24, for headings (19–30px). */
+      display: "Fraunces-24pt",
+      /** Fraunces at its default optical size 9, for body and small text. */
+      displaySmall: "Fraunces",
       text: "IBMPlexSans-Regular",
       textMedium: "IBMPlexSans-Medium",
       mono: "IBMPlexMono-Medium",
@@ -32,6 +35,10 @@ const shared: Omit<Theme, "colors"> = {
     sm: 6,
     md: 12,
     lg: 20,
+  },
+  overlays: {
+    /** Brew-path's modal dim: #0E0A07 at 62%, in both moods. */
+    modalDim: "rgba(14, 10, 7, 0.62)",
   },
   shadows: {
     small: "0 2px 8px rgba(61, 52, 43, 0.08)",

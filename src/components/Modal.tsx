@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { styled, DefaultTheme } from "styled-components/native";
+import { styled, DefaultTheme, useTheme } from "styled-components/native";
 
 interface ModalProps {
   visible: boolean;
@@ -20,7 +20,8 @@ interface ModalProps {
 
 const ModalOverlay = styled.View`
   flex: 1;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${({ theme }: { theme: DefaultTheme }) =>
+    theme.overlays.modalDim};
   justify-content: center;
   align-items: center;
 `;
@@ -74,11 +75,12 @@ export const Modal: React.FC<ModalProps> = ({
   title,
   showCloseButton = true,
 }) => {
+  const theme = useTheme();
   const [fadeAnim] = React.useState(new Animated.Value(0));
   const [slideAnim] = React.useState(new Animated.Value(0));
 
   const shadowStyle = {
-    shadowColor: "#000",
+    shadowColor: theme.colors.functional.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,

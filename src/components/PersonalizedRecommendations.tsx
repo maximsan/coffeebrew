@@ -303,18 +303,26 @@ export const PersonalizedRecommendations: React.FC<
                 <RecipeMeta>
                   <View style={{ flexDirection: "row" }}>
                     <RecipeMetaItem>
-                      <Ionicons name="time-outline" size={16} color="#666" />
+                      <Ionicons
+                        name="time-outline"
+                        size={16}
+                        color={theme.colors.text.secondary}
+                      />
                       <RecipeMetaText>{recipe.brewTime}s</RecipeMetaText>
                     </RecipeMetaItem>
                     <RecipeMetaItem style={{ marginLeft: 12 }}>
-                      <Ionicons name="cafe-outline" size={16} color="#666" />
+                      <Ionicons
+                        name="cafe-outline"
+                        size={16}
+                        color={theme.colors.text.secondary}
+                      />
                       <RecipeMetaText>{recipe.brewMethod}</RecipeMetaText>
                     </RecipeMetaItem>
                     <RecipeMetaItem style={{ marginLeft: 12 }}>
                       <Ionicons
                         name="speedometer-outline"
                         size={16}
-                        color="#666"
+                        color={theme.colors.text.secondary}
                       />
                       <RecipeMetaText>{recipe.difficulty}</RecipeMetaText>
                     </RecipeMetaItem>

@@ -31,6 +31,7 @@ export interface Theme {
   typography: {
     fontFamily: {
       display: FontName;
+      displaySmall: FontName;
       text: FontName;
       textMedium: FontName;
       mono: FontName;
@@ -54,6 +55,11 @@ export interface Theme {
     sm: number;
     md: number;
     lg: number;
+  };
+  /** Overlays that look the same in both modes. */
+  overlays: {
+    /** Dims the screen behind a modal. */
+    modalDim: string;
   };
   shadows: {
     small: string;

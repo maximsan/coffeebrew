@@ -164,7 +164,7 @@ const DoseLabel = styled.Text<StyledProps>`
 
 const DoseValue = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.displaySmall};
   font-size: ${({ theme }: StyledProps) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};

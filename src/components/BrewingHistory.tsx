@@ -220,7 +220,7 @@ export const BrewingHistory: React.FC<BrewingHistoryProps> = ({
                 <Ionicons
                   name="arrow-up-circle-outline"
                   size={20}
-                  color="#2196F3"
+                  color={theme.colors.accent.gold}
                 />
               </ImprovementIcon>
               <ImprovementText>{area}</ImprovementText>

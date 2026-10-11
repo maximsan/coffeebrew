@@ -67,7 +67,7 @@ const Row = styled(TouchableOpacity)<StyledProps>`
 
 const RowTitle = styled.Text<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.displaySmall};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};

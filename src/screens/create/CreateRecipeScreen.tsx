@@ -12,7 +12,7 @@ import {
   NavigationProp,
   ParamListBase,
 } from "@react-navigation/native";
-import { styled } from "styled-components/native";
+import { styled, useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { ImagePickerComponent } from "../../components/ImagePicker";
 import { recipeService } from "../../services/recipes";
@@ -162,6 +162,7 @@ const SectionTitle = styled.Text<StyledProps>`
 `;
 
 export const CreateRecipeScreen = () => {
+  const theme = useTheme();
   const navigation = useNavigation<CreateScreenNavigationProp>();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -262,7 +263,7 @@ export const CreateRecipeScreen = () => {
                 value={title}
                 onChangeText={setTitle}
                 placeholder="Enter recipe title"
-                placeholderTextColor="#999"
+                placeholderTextColor={theme.colors.text.tertiary}
               />
             </FormGroup>
 
@@ -272,7 +273,7 @@ export const CreateRecipeScreen = () => {
                 value={description}
                 onChangeText={setDescription}
                 placeholder="Enter recipe description"
-                placeholderTextColor="#999"
+                placeholderTextColor={theme.colors.text.tertiary}
                 multiline
               />
             </FormGroup>
@@ -283,7 +284,7 @@ export const CreateRecipeScreen = () => {
                 value={brewTime}
                 onChangeText={setBrewTime}
                 placeholder="Enter brew time in minutes"
-                placeholderTextColor="#999"
+                placeholderTextColor={theme.colors.text.tertiary}
                 keyboardType="numeric"
               />
             </FormGroup>
@@ -294,7 +295,7 @@ export const CreateRecipeScreen = () => {
                 value={difficulty}
                 onChangeText={setDifficulty}
                 placeholder="Enter difficulty level"
-                placeholderTextColor="#999"
+                placeholderTextColor={theme.colors.text.tertiary}
               />
             </FormGroup>
 
@@ -304,7 +305,7 @@ export const CreateRecipeScreen = () => {
                 value={brewMethod}
                 onChangeText={setBrewMethod}
                 placeholder="Enter brew method"
-                placeholderTextColor="#999"
+                placeholderTextColor={theme.colors.text.tertiary}
               />
             </FormGroup>
 
@@ -314,21 +315,29 @@ export const CreateRecipeScreen = () => {
                 <StepHeader>
                   <StepTitle>Step {index + 1}</StepTitle>
                   <DeleteStepButton onPress={() => handleDeleteStep(index)}>
-                    <Ionicons name="trash-outline" size={24} color="#FF3B30" />
+                    <Ionicons
+                      name="trash-outline"
+                      size={24}
+                      color={theme.colors.functional.error}
+                    />
                   </DeleteStepButton>
                 </StepHeader>
                 <StepInput
                   value={step}
                   onChangeText={(text: string) => handleStepChange(text, index)}
                   placeholder={`Enter step ${index + 1}`}
-                  placeholderTextColor="#999"
+                  placeholderTextColor={theme.colors.text.tertiary}
                   multiline
                 />
               </StepContainer>
             ))}
 
             <AddStepButton onPress={handleAddStep}>
-              <Ionicons name="add-circle-outline" size={24} color="#000000" />
+              <Ionicons
+                name="add-circle-outline"
+                size={24}
+                color={theme.colors.text.primary}
+              />
               <AddStepText>Add Step</AddStepText>
             </AddStepButton>
 
