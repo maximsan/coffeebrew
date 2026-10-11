@@ -35,7 +35,7 @@ const ProfileImage = styled(Image)<StyledProps>`
 
 const UserName = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -68,7 +68,7 @@ const StatItem = styled(View)<StyledProps>`
 
 const StatValue = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -88,7 +88,7 @@ const Section = styled(View)<StyledProps>`
 
 const SectionTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};

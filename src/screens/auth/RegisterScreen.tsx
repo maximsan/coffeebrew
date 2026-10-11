@@ -40,7 +40,7 @@ const Container = styled(View)<StyledProps>`
 const Title = styled.Text<StyledProps>`
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h1}px`};
   margin-bottom: ${({ theme }: StyledProps) => `${theme.spacing.xl}px`};
   text-align: center;

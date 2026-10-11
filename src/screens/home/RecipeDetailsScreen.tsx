@@ -47,7 +47,7 @@ const DetailsContainer = styled(View)<StyledProps>`
 
 const Title = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
   margin-top: ${({ theme }: StyledProps) => `${theme.spacing.md}px`};
@@ -96,7 +96,7 @@ const StepsHeaderLeft = styled(View)`
 
 const StepsHeaderTitle = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
 `;
@@ -118,7 +118,7 @@ const StepContainer = styled.View<StyledProps>`
 
 const StepTitle = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
 `;
@@ -142,7 +142,7 @@ const DoseCard = styled(View)<StyledProps>`
 
 const DoseHeading = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
   margin-bottom: ${({ theme }: StyledProps) => `${theme.spacing.md}px`};
@@ -164,7 +164,7 @@ const DoseLabel = styled.Text<StyledProps>`
 
 const DoseValue = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: StyledProps) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
@@ -172,7 +172,7 @@ const DoseValue = styled.Text<StyledProps>`
 
 const DoseAccent = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: StyledProps) => theme.colors.accent.gold};
 `;

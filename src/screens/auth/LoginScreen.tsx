@@ -38,8 +38,9 @@ const LogoContainer = styled(View)<StyledProps>`
 `;
 
 const Title = styled.Text<StyledProps>`
+  font-family: ${({ theme }: StyledProps) =>
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h1}px`};
-  font-weight: bold;
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
   text-align: center;
   margin-bottom: ${({ theme }: StyledProps) => `${theme.spacing.lg}px`};
@@ -76,7 +77,8 @@ const SignUpLink = styled.Text<StyledProps>`
   color: ${({ theme }: StyledProps) => theme.colors.accent.gold};
   font-size: ${({ theme }: StyledProps) =>
     `${theme.typography.fontSize.body}px`};
-  font-weight: bold;
+  font-family: ${({ theme }: StyledProps) =>
+    theme.typography.fontFamily.textMedium};
   margin-left: ${({ theme }: StyledProps) => `${theme.spacing.xs}px`};
 `;
 

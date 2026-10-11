@@ -62,7 +62,7 @@ const ContentContainer = styled(View)<StyledProps>`
 
 const Title = styled(Text)<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h1}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
   margin-bottom: ${({ theme }: StyledProps) => `${theme.spacing.sm}px`};
@@ -96,14 +96,14 @@ const InfoLabel = styled(Text)<StyledProps>`
 
 const InfoValue = styled(Text)<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
 `;
 
 const SectionTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
   margin-bottom: ${({ theme }: StyledProps) => `${theme.spacing.md}px`};
@@ -130,7 +130,7 @@ const StepsHeaderLeft = styled(View)`
 
 const StepsHeaderTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
 `;
@@ -154,7 +154,7 @@ const StepColumn = styled(View)`
 
 const StepTimeLabel = styled(Text)<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: StyledProps) =>
     `${theme.typography.fontSize.small}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.tertiary};
@@ -173,7 +173,7 @@ const StepNumber = styled(View)<StyledProps>`
 
 const StepNumberText = styled(Text)<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: StyledProps) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.onAccent};
@@ -223,7 +223,7 @@ const RatingHeader = styled(View)<StyledProps>`
 
 const RatingTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
 `;

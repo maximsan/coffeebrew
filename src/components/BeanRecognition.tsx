@@ -31,7 +31,7 @@ const Header = styled.View`
 
 const Title = styled.Text`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -48,7 +48,7 @@ const Section = styled.View`
 
 const SectionTitle = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
   margin-bottom: ${({ theme }: StyledProps) => `${theme.spacing.sm}px`};
@@ -64,7 +64,7 @@ const CameraButton = styled.TouchableOpacity<StyledProps>`
 
 const ButtonText = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: StyledProps) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};

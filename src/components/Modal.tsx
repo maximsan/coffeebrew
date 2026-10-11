@@ -20,7 +20,8 @@ interface ModalProps {
 
 const ModalOverlay = styled.View`
   flex: 1;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${({ theme }: { theme: DefaultTheme }) =>
+    theme.overlays.modalDim};
   justify-content: center;
   align-items: center;
 `;
@@ -33,6 +34,11 @@ const ModalContainer = styled.View`
   width: 90%;
   max-height: 80%;
   padding: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.lg}px`};
+  shadow-color: ${({ theme }: { theme: DefaultTheme }) => theme.overlays.shadow};
+  shadow-offset: 0px 2px;
+  shadow-opacity: 0.25;
+  shadow-radius: 3.84px;
+  elevation: 5;
 `;
 
 const ModalHeader = styled.View`
@@ -45,7 +51,7 @@ const ModalHeader = styled.View`
 
 const ModalTitle = styled.Text`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -76,14 +82,6 @@ export const Modal: React.FC<ModalProps> = ({
 }) => {
   const [fadeAnim] = React.useState(new Animated.Value(0));
   const [slideAnim] = React.useState(new Animated.Value(0));
-
-  const shadowStyle = {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  };
 
   useEffect(() => {
     if (visible) {
@@ -159,7 +157,7 @@ export const Modal: React.FC<ModalProps> = ({
                   ],
                 }}
               >
-                <ModalContainer style={shadowStyle}>
+                <ModalContainer>
                   {(title || showCloseButton) && (
                     <ModalHeader>
                       {title && <ModalTitle>{title}</ModalTitle>}

@@ -34,10 +34,9 @@ const TopBar = styled(View)<StyledProps>`
 `;
 
 const CloseLink = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.text};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.textMedium};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: T) => theme.colors.accent.gold};
-  font-weight: 600;
 `;
 
 const Content = styled(ScrollView)<StyledProps>`
@@ -64,7 +63,7 @@ const MugRing = styled(View)<StyledProps>`
 `;
 
 const Headline = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.display};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h1}px`};
   color: ${({ theme }: T) => theme.colors.text.primary};
   text-align: center;
@@ -97,7 +96,7 @@ const CardStamp = styled(Text)<StyledProps>`
 `;
 
 const MethodTitle = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.display};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: T) => theme.colors.text.primary};
   margin-bottom: ${({ theme }: T) => `${theme.spacing.lg}px`};
@@ -124,18 +123,21 @@ const StatLabel = styled(Text)<StyledProps>`
 `;
 
 const StatValue = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.display};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: T) => theme.colors.text.primary};
 `;
+
+/** Keeps the wave's contrast against the background at 1.33, as it was before the brew-path colours. */
+const WAVE_OPACITY = 0.2;
 
 const WaveDecoration = styled(View)<StyledProps>`
   height: 4px;
   margin-top: ${({ theme }: T) => `${theme.spacing.lg}px`};
   margin-bottom: ${({ theme }: T) => `${theme.spacing.sm}px`};
   border-radius: 2px;
-  background-color: ${({ theme }: T) => theme.colors.accent.goldLight};
-  opacity: 0.55;
+  background-color: ${({ theme }: T) => theme.colors.accent.gold};
+  opacity: ${WAVE_OPACITY};
 `;
 
 const Actions = styled(View)<StyledProps>`

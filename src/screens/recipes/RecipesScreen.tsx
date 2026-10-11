@@ -38,7 +38,7 @@ const Header = styled.View<StyledProps>`
 
 const Title = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h1}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
 `;
@@ -134,7 +134,7 @@ export const RecipesScreen = () => {
 const RecipeTitle = styled.Text<StyledProps>`
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
   font-family: ${({ theme }: StyledProps) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h3}px`};
   margin-bottom: ${({ theme }: StyledProps) => `${theme.spacing.xs}px`};
 `;

@@ -72,7 +72,7 @@ const TimerButton = styled.TouchableOpacity<{
 
 const ButtonText = styled.Text<{ variant: "primary" | "secondary" }>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({

@@ -1,7 +1,7 @@
 // Postponed past v1 — not in the v1 navigator; see app/docs/v2_backlog.md
 import React, { useState } from "react";
 import { View, ScrollView, TouchableOpacity, Alert, Text } from "react-native";
-import { styled, DefaultTheme } from "styled-components/native";
+import { styled, DefaultTheme, useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { RecipeAnalysis } from "../../components/RecipeAnalysis";
@@ -28,7 +28,7 @@ const Header = styled(View)`
 
 const Title = styled(Text)`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h1}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -56,7 +56,7 @@ const Section = styled(View)`
 
 const SectionTitle = styled(Text)`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -94,7 +94,7 @@ const FeatureContent = styled(View)`
 
 const FeatureTitle = styled(Text)`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -118,6 +118,7 @@ const BackButton = styled(TouchableOpacity)`
 `;
 
 export const AIScreen = () => {
+  const theme = useTheme();
   const navigation = useNavigation();
   const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
@@ -159,7 +160,11 @@ export const AIScreen = () => {
       </Header>
 
       <BackButton onPress={() => navigation.goBack()}>
-        <Ionicons name="arrow-back" size={24} color="#000000" />
+        <Ionicons
+          name="arrow-back"
+          size={24}
+          color={theme.colors.text.primary}
+        />
       </BackButton>
 
       <Content>
@@ -192,7 +197,7 @@ export const AIScreen = () => {
                   <Ionicons
                     name="analytics-outline"
                     size={24}
-                    color="#000000"
+                    color={theme.colors.text.primary}
                   />
                 </FeatureIcon>
                 <FeatureContent>
@@ -212,7 +217,11 @@ export const AIScreen = () => {
                 onPress={() => handleFeatureSelect("bean-recognition")}
               >
                 <FeatureIcon>
-                  <Ionicons name="camera-outline" size={24} color="#000000" />
+                  <Ionicons
+                    name="camera-outline"
+                    size={24}
+                    color={theme.colors.text.primary}
+                  />
                 </FeatureIcon>
                 <FeatureContent>
                   <FeatureTitle>Bean Recognition</FeatureTitle>
@@ -237,7 +246,11 @@ export const AIScreen = () => {
                   <Ionicons
                     name="person-outline"
                     size={24}
-                    color={currentUser ? "#000000" : "#999"}
+                    color={
+                      currentUser
+                        ? theme.colors.text.primary
+                        : theme.colors.text.tertiary
+                    }
                   />
                 </FeatureIcon>
                 <FeatureContent>
@@ -258,7 +271,11 @@ export const AIScreen = () => {
                 disabled={!currentUser}
               >
                 <FeatureIcon>
-                  <Ionicons name="time-outline" size={24} color="#000000" />
+                  <Ionicons
+                    name="time-outline"
+                    size={24}
+                    color={theme.colors.text.primary}
+                  />
                 </FeatureIcon>
                 <FeatureContent>
                   <FeatureTitle>Brewing History</FeatureTitle>

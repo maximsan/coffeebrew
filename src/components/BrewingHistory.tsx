@@ -29,7 +29,7 @@ const Header = styled.View`
 
 const Title = styled.Text`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -46,7 +46,7 @@ const Section = styled.View`
 
 const SectionTitle = styled.Text`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -220,7 +220,7 @@ export const BrewingHistory: React.FC<BrewingHistoryProps> = ({
                 <Ionicons
                   name="arrow-up-circle-outline"
                   size={20}
-                  color="#2196F3"
+                  color={theme.colors.functional.water}
                 />
               </ImprovementIcon>
               <ImprovementText>{area}</ImprovementText>

@@ -34,7 +34,7 @@ const HeaderPad = styled(View)<StyledProps>`
 
 const Title = styled.Text<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h1}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -67,7 +67,7 @@ const Row = styled(TouchableOpacity)<StyledProps>`
 
 const RowTitle = styled.Text<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};

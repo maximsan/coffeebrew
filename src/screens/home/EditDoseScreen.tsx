@@ -45,20 +45,19 @@ const HeaderRow = styled(View)<StyledProps>`
 `;
 
 const HeaderBtn = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.text};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.textMedium};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: T) => theme.colors.accent.gold};
-  font-weight: 600;
 `;
 
 const HeaderTitle = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.display};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: T) => theme.colors.text.primary};
 `;
 
 const SectionTitle = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.display};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: T) => theme.colors.text.primary};
   margin-bottom: ${({ theme }: T) => `${theme.spacing.md}px`};
@@ -92,17 +91,16 @@ const ValueUnit = styled(View)<StyledProps>`
 `;
 
 const ValueNum = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.display};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: T) => theme.colors.text.primary};
 `;
 
 const Unit = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.text};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.textMedium};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: T) => theme.colors.accent.gold};
   margin-left: 4px;
-  font-weight: 600;
 `;
 
 const Stepper = styled(View)<StyledProps>`
@@ -130,7 +128,7 @@ const RatioRow = styled(View)<StyledProps>`
 `;
 
 const RatioText = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.display};
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: T) => theme.colors.accent.gold};
 `;
@@ -340,8 +338,7 @@ export const EditDoseScreen: React.FC = () => {
               >
                 <Text
                   style={{
-                    fontFamily: theme.typography.fontFamily.text,
-                    fontWeight: "700",
+                    fontFamily: theme.typography.fontFamily.textMedium,
                     fontSize: theme.typography.fontSize.body,
                     color: theme.colors.text.onAccent,
                   }}

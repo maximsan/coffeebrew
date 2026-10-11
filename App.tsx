@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { ThemeProvider } from "styled-components/native";
+import { ThemeProvider, useTheme } from "styled-components/native";
 import { NavigationContainer } from "@react-navigation/native";
-import { theme } from "./src/theme/theme";
+import { darkTheme, lightTheme } from "./src/theme/theme";
+import { fontFiles } from "./src/theme/fonts";
+import { navigationThemes } from "./src/theme/navigationTheme";
 import { Navigation } from "./src/navigation/Navigation";
 import { AuthProvider } from "./src/store/AuthContext";
-import { View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator, useColorScheme } from "react-native";
 import styled from "styled-components/native";
 import { useAuth } from "./src/store/AuthContext";
 import { StyledProps } from "./src/theme/styled-components";
+
+SplashScreen.preventAutoHideAsync();
 
 const LoadingContainer = styled(View)<StyledProps>`
   flex: 1;
@@ -21,6 +27,7 @@ const LoadingContainer = styled(View)<StyledProps>`
 
 const AppContent = () => {
   const { isLoading } = useAuth();
+  const theme = useTheme();
 
   if (isLoading) {
     return (
@@ -34,12 +41,32 @@ const AppContent = () => {
 };
 
 export default function App() {
+  const isDark = useColorScheme() === "dark";
+  const theme = isDark ? darkTheme : lightTheme;
+  const [fontsLoaded, fontError] = useFonts(fontFiles);
+  const fontsReady = fontsLoaded || fontError !== null;
+
+  useEffect(() => {
+    if (fontError) {
+      console.warn("Fonts failed to load; using system fonts.", fontError);
+    }
+    if (fontsReady) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsReady, fontError]);
+
+  if (!fontsReady) {
+    return null;
+  }
+
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
-        <StatusBar style="dark" />
+        <StatusBar style="auto" />
         <AuthProvider>
-          <NavigationContainer>
+          <NavigationContainer
+            theme={isDark ? navigationThemes.dark : navigationThemes.light}
+          >
             <AppContent />
           </NavigationContainer>
         </AuthProvider>

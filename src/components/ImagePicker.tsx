@@ -1,7 +1,7 @@
 // Postponed past v1 — only non-v1 screens use this; see app/docs/v2_backlog.md
 import React from "react";
 import { View, Alert, Platform, PermissionsAndroid } from "react-native";
-import { styled, DefaultTheme } from "styled-components/native";
+import { styled, DefaultTheme, useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 
@@ -89,6 +89,7 @@ export const ImagePickerComponent: React.FC<ImagePickerProps> = ({
   quality = 0.7,
   size = "medium",
 }) => {
+  const theme = useTheme();
   const requestCameraPermission = async () => {
     if (Platform.OS === "android") {
       try {
@@ -205,7 +206,11 @@ export const ImagePickerComponent: React.FC<ImagePickerProps> = ({
               justifyContent: "center",
             }}
           >
-            <Ionicons name="image-outline" size={40} color="#999" />
+            <Ionicons
+              name="image-outline"
+              size={40}
+              color={theme.colors.text.tertiary}
+            />
             <PlaceholderText>No image selected</PlaceholderText>
           </View>
         )}
@@ -213,11 +218,19 @@ export const ImagePickerComponent: React.FC<ImagePickerProps> = ({
 
       <ActionButtons>
         <ActionButton onPress={takePhoto}>
-          <Ionicons name="camera-outline" size={24} color="#000000" />
+          <Ionicons
+            name="camera-outline"
+            size={24}
+            color={theme.colors.text.primary}
+          />
           <ActionButtonText>Take Photo</ActionButtonText>
         </ActionButton>
         <ActionButton onPress={pickImage}>
-          <Ionicons name="images-outline" size={24} color="#000000" />
+          <Ionicons
+            name="images-outline"
+            size={24}
+            color={theme.colors.text.primary}
+          />
           <ActionButtonText>Choose</ActionButtonText>
         </ActionButton>
       </ActionButtons>

@@ -1,13 +1,12 @@
 // Postponed past v1 — only non-v1 screens use this; see app/docs/v2_backlog.md
 import React from "react";
 import { TextInput as RNTextInput, View, Text } from "react-native";
-import { styled } from "styled-components/native";
+import { styled, useTheme } from "styled-components/native";
 import {
   StyledProps,
   StyledPropsWithError,
   StyledPropsWithDisabled,
 } from "../theme/styled-components";
-import { theme } from "../theme/theme";
 
 interface TextInputProps {
   value: string;
@@ -76,6 +75,8 @@ export const TextInput: React.FC<TextInputProps> = ({
   keyboardType = "default",
   autoCapitalize = "sentences",
 }) => {
+  const theme = useTheme();
+
   return (
     <InputContainer>
       {label && <Label>{label}</Label>}

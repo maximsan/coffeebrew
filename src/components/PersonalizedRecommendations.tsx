@@ -38,7 +38,7 @@ const Header = styled.View`
 
 const Title = styled.Text`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -55,7 +55,7 @@ const Section = styled.View`
 
 const SectionTitle = styled.Text`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -85,7 +85,7 @@ const RecipeContent = styled.View`
 
 const RecipeTitle = styled.Text`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.heading};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -135,7 +135,7 @@ const MatchScore = styled.View`
 
 const MatchScoreText = styled.Text`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.display};
+    theme.typography.fontFamily.serifText};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.small}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
@@ -303,18 +303,26 @@ export const PersonalizedRecommendations: React.FC<
                 <RecipeMeta>
                   <View style={{ flexDirection: "row" }}>
                     <RecipeMetaItem>
-                      <Ionicons name="time-outline" size={16} color="#666" />
+                      <Ionicons
+                        name="time-outline"
+                        size={16}
+                        color={theme.colors.text.secondary}
+                      />
                       <RecipeMetaText>{recipe.brewTime}s</RecipeMetaText>
                     </RecipeMetaItem>
                     <RecipeMetaItem style={{ marginLeft: 12 }}>
-                      <Ionicons name="cafe-outline" size={16} color="#666" />
+                      <Ionicons
+                        name="cafe-outline"
+                        size={16}
+                        color={theme.colors.text.secondary}
+                      />
                       <RecipeMetaText>{recipe.brewMethod}</RecipeMetaText>
                     </RecipeMetaItem>
                     <RecipeMetaItem style={{ marginLeft: 12 }}>
                       <Ionicons
                         name="speedometer-outline"
                         size={16}
-                        color="#666"
+                        color={theme.colors.text.secondary}
                       />
                       <RecipeMetaText>{recipe.difficulty}</RecipeMetaText>
                     </RecipeMetaItem>

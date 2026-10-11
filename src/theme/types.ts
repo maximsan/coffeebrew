@@ -1,3 +1,5 @@
+import type { FontName } from "./fonts";
+
 export interface Theme {
   colors: {
     background: {
@@ -16,8 +18,6 @@ export interface Theme {
     };
     accent: {
       gold: string;
-      goldLight: string;
-      goldDark: string;
     };
     functional: {
       water: string;
@@ -29,9 +29,11 @@ export interface Theme {
   };
   typography: {
     fontFamily: {
-      display: string;
-      text: string;
-      mono: string;
+      heading: FontName;
+      serifText: FontName;
+      text: FontName;
+      textMedium: FontName;
+      mono: FontName;
     };
     fontSize: {
       h1: number;
@@ -53,9 +55,10 @@ export interface Theme {
     md: number;
     lg: number;
   };
-  shadows: {
-    small: string;
-    medium: string;
-    large: string;
+  /** Colours drawn over or under surfaces, the same in both modes. */
+  overlays: {
+    /** Dims the screen behind a modal. */
+    modalDim: string;
+    shadow: string;
   };
 }
