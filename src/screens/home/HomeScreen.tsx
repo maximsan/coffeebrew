@@ -14,6 +14,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
 import { HomeStackParamList } from "../../navigation/types";
 import { Card } from "../../components/Card";
+import { ScreenScroll } from "../../components/ScreenScroll";
 import { StyledProps } from "../../theme/styled-components";
 import { recipeService, Recipe } from "../../services/recipes";
 import { brewHistoryService, BrewLogEntry } from "../../services/brewHistory";
@@ -32,11 +33,6 @@ const Container = styled(SafeAreaView).attrs({
   flex: 1;
   background-color: ${({ theme }: { theme: DefaultTheme }) =>
     theme.colors.background.primary};
-`;
-
-const Content = styled(ScrollView)<StyledProps>`
-  flex: 1;
-  padding: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.lg}px`};
 `;
 
 const Section = styled(View)<StyledProps>`
@@ -443,7 +439,7 @@ export const HomeScreen = () => {
   if (error) {
     return (
       <Container>
-        <Content contentContainerStyle={{ paddingTop: 24 }}>
+        <ScreenScroll contentContainerStyle={{ paddingTop: 24 }}>
           <ScreenTitle accessibilityRole="header">Brew Master</ScreenTitle>
           <ErrorText accessibilityRole="alert">{error}</ErrorText>
           <Button
@@ -452,14 +448,14 @@ export const HomeScreen = () => {
             fullWidth
             accessibilityHint="Reloads the recipe list from storage"
           />
-        </Content>
+        </ScreenScroll>
       </Container>
     );
   }
 
   return (
     <Container>
-      <Content refreshControl={refreshControl}>
+      <ScreenScroll refreshControl={refreshControl}>
         <ScreenTitle>Brew Master</ScreenTitle>
         <Subtitle>Recipes for calmer mornings</Subtitle>
 
@@ -602,7 +598,7 @@ export const HomeScreen = () => {
             ))}
           </Section>
         )}
-      </Content>
+      </ScreenScroll>
     </Container>
   );
 };

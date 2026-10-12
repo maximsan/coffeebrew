@@ -6,6 +6,7 @@ import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "../../navigation/types";
 import { Button } from "../../components/Button";
+import { ScreenScroll } from "../../components/ScreenScroll";
 import { StyledProps } from "../../theme/styled-components";
 import { recipeService, Recipe } from "../../services/recipes";
 import { recipeImageSource } from "../../utils/recipeImages";
@@ -26,11 +27,6 @@ const Container = styled.View<StyledProps>`
   flex: 1;
   background-color: ${({ theme }: StyledProps) =>
     theme.colors.background.primary};
-`;
-
-const Content = styled.ScrollView<StyledProps>`
-  flex: 1;
-  padding: ${({ theme }: StyledProps) => `${theme.spacing.lg}px`};
 `;
 
 const HeaderImage = styled(Image)<StyledProps>`
@@ -240,7 +236,7 @@ export const RecipeDetailsScreen = () => {
   if (error) {
     return (
       <Container>
-        <Content>
+        <ScreenScroll>
           <Title accessibilityRole="header">Something went wrong</Title>
           <Description accessibilityRole="alert">{error}</Description>
           <Button
@@ -249,7 +245,7 @@ export const RecipeDetailsScreen = () => {
             style={{ marginTop: theme.spacing.lg }}
             accessibilityHint="Returns to the previous screen"
           />
-        </Content>
+        </ScreenScroll>
       </Container>
     );
   }
@@ -257,7 +253,7 @@ export const RecipeDetailsScreen = () => {
   if (!recipe) {
     return (
       <Container>
-        <Content
+        <ScreenScroll
           contentContainerStyle={{ paddingTop: 48 }}
           accessibilityLabel="Loading recipe"
         >
@@ -266,7 +262,7 @@ export const RecipeDetailsScreen = () => {
             color={theme.colors.accent.gold}
             accessibilityLabel="Loading"
           />
-        </Content>
+        </ScreenScroll>
       </Container>
     );
   }
@@ -278,7 +274,7 @@ export const RecipeDetailsScreen = () => {
 
   return (
     <Container>
-      <Content>
+      <ScreenScroll>
         <HeaderImage
           source={recipeImageSource(recipe.id, recipe.imageUrl)}
           contentFit="cover"
@@ -395,7 +391,7 @@ export const RecipeDetailsScreen = () => {
               : null}
           </Section>
         </DetailsContainer>
-      </Content>
+      </ScreenScroll>
     </Container>
   );
 };

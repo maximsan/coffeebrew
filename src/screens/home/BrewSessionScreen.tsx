@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
-import { View, ScrollView, ActivityIndicator, Text } from "react-native";
+import { View, ActivityIndicator, Text } from "react-native";
 import * as Haptics from "expo-haptics";
 import { styled, DefaultTheme, useTheme } from "styled-components/native";
 import { RouteProp, useRoute, useNavigation } from "@react-navigation/native";
@@ -15,6 +15,7 @@ import { recipeService, Recipe } from "../../services/recipes";
 import { getRecipeDose, liquidLabelForMethod } from "../../services/recipeDose";
 import { BrewTimer } from "../../components/BrewTimer";
 import { Button } from "../../components/Button";
+import { ScreenScroll } from "../../components/ScreenScroll";
 import { StyledProps } from "../../theme/styled-components";
 
 type BrewSessionRouteProp = RouteProp<HomeStackParamList, "BrewSession">;
@@ -27,11 +28,6 @@ const Container = styled(View)<StyledProps>`
   flex: 1;
   background-color: ${({ theme }: { theme: DefaultTheme }) =>
     theme.colors.background.primary};
-`;
-
-const Content = styled(ScrollView)<StyledProps>`
-  flex: 1;
-  padding: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.lg}px`};
 `;
 
 const RecipeTitle = styled.Text<StyledProps>`
@@ -263,14 +259,14 @@ export const BrewSessionScreen: React.FC = () => {
   if (loadError) {
     return (
       <Container>
-        <Content>
+        <ScreenScroll>
           <Instruction accessibilityRole="alert">{loadError}</Instruction>
           <Button
             title="Go back"
             onPress={() => navigation.goBack()}
             accessibilityHint="Returns to the previous screen"
           />
-        </Content>
+        </ScreenScroll>
       </Container>
     );
   }
@@ -278,7 +274,7 @@ export const BrewSessionScreen: React.FC = () => {
   if (!recipe || !step) {
     return (
       <Container>
-        <Content
+        <ScreenScroll
           contentContainerStyle={{ paddingTop: 48 }}
           accessibilityLabel="Loading brew session"
         >
@@ -287,7 +283,7 @@ export const BrewSessionScreen: React.FC = () => {
             color={theme.colors.accent.gold}
             accessibilityLabel="Loading"
           />
-        </Content>
+        </ScreenScroll>
       </Container>
     );
   }
@@ -297,7 +293,7 @@ export const BrewSessionScreen: React.FC = () => {
 
   return (
     <Container>
-      <Content>
+      <ScreenScroll>
         <RecipeTitle>{recipe.title}</RecipeTitle>
         <StepBadge>
           Step {stepIndex + 1} of {totalSteps} · {step.time}
@@ -346,7 +342,7 @@ export const BrewSessionScreen: React.FC = () => {
             <DoseStrong>{sessionDose.waterGrams} g</DoseStrong>
           </DoseChunk>
         </DoseStrip>
-      </Content>
+      </ScreenScroll>
     </Container>
   );
 };

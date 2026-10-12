@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import {
   View,
-  ScrollView,
   Text,
   TouchableOpacity,
   KeyboardAvoidingView,
@@ -13,6 +12,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeStackParamList } from "../../navigation/types";
+import { ScreenScroll } from "../../components/ScreenScroll";
 import { StyledProps } from "../../theme/styled-components";
 import { Button } from "../../components/Button";
 import {
@@ -35,11 +35,6 @@ const Container = styled(SafeAreaView).attrs({
 })<StyledProps>`
   flex: 1;
   background-color: ${({ theme }: T) => theme.colors.background.primary};
-`;
-
-const Content = styled(ScrollView)<StyledProps>`
-  flex: 1;
-  padding: ${({ theme }: T) => `${theme.spacing.lg}px`};
 `;
 
 const HeaderRow = styled(View)<StyledProps>`
@@ -233,7 +228,7 @@ export const EditDoseScreen: React.FC = () => {
   return (
     <Safe behavior={Platform.OS === "ios" ? "padding" : undefined}>
       <Container>
-        <Content keyboardShouldPersistTaps="handled">
+        <ScreenScroll keyboardShouldPersistTaps="handled">
           <HeaderRow>
             <HeaderSide>
               <TouchableOpacity
@@ -342,7 +337,7 @@ export const EditDoseScreen: React.FC = () => {
             style={{ marginTop: theme.spacing.lg }}
             accessibilityHint="Uses these amounts for this brew"
           />
-        </Content>
+        </ScreenScroll>
       </Container>
     </Safe>
   );
