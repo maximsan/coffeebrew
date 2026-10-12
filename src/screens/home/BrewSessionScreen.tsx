@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
-import { View, ScrollView, ActivityIndicator, Text } from "react-native";
+import { View, ActivityIndicator, Text } from "react-native";
 import * as Haptics from "expo-haptics";
 import { styled, DefaultTheme, useTheme } from "styled-components/native";
 import { RouteProp, useRoute, useNavigation } from "@react-navigation/native";
@@ -15,6 +15,7 @@ import { recipeService, Recipe } from "../../services/recipes";
 import { getRecipeDose, liquidLabelForMethod } from "../../services/recipeDose";
 import { BrewTimer } from "../../components/BrewTimer";
 import { Button } from "../../components/Button";
+import { ScreenScroll } from "../../components/ScreenScroll";
 import { StyledProps } from "../../theme/styled-components";
 
 type BrewSessionRouteProp = RouteProp<HomeStackParamList, "BrewSession">;
@@ -27,11 +28,6 @@ const Container = styled(View)<StyledProps>`
   flex: 1;
   background-color: ${({ theme }: { theme: DefaultTheme }) =>
     theme.colors.background.primary};
-`;
-
-const Content = styled(ScrollView)<StyledProps>`
-  flex: 1;
-  padding: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.lg}px`};
 `;
 
 const RecipeTitle = styled.Text<StyledProps>`
@@ -71,8 +67,10 @@ const Hint = styled.Text<StyledProps>`
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.small}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.tertiary};
+  line-height: 18px;
+  margin-top: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.sm}px`};
   margin-bottom: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.spacing.md}px`};
+    `${theme.spacing.lg}px`};
 `;
 
 const NextPreview = styled(View)<StyledProps>`
@@ -88,24 +86,14 @@ const NextPreview = styled(View)<StyledProps>`
     theme.colors.functional.border};
 `;
 
-const NextLabel = styled(Text)<StyledProps>`
+const NextTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.serifText};
+    theme.typography.fontFamily.textMedium};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.typography.fontSize.small}px`};
-  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.accent.gold};
+    `${theme.typography.fontSize.body}px`};
+  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
   margin-bottom: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.spacing.xs}px`};
-`;
-
-const NextMeta = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.text};
-  font-size: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.typography.fontSize.small}px`};
-  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.tertiary};
-  margin-bottom: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.spacing.sm}px`};
 `;
 
 const NextInstruction = styled(Text)<StyledProps>`
@@ -271,14 +259,14 @@ export const BrewSessionScreen: React.FC = () => {
   if (loadError) {
     return (
       <Container>
-        <Content>
+        <ScreenScroll>
           <Instruction accessibilityRole="alert">{loadError}</Instruction>
           <Button
             title="Go back"
             onPress={() => navigation.goBack()}
             accessibilityHint="Returns to the previous screen"
           />
-        </Content>
+        </ScreenScroll>
       </Container>
     );
   }
@@ -286,8 +274,8 @@ export const BrewSessionScreen: React.FC = () => {
   if (!recipe || !step) {
     return (
       <Container>
-        <Content
-          contentContainerStyle={{ paddingTop: 48 }}
+        <ScreenScroll
+          contentContainerStyle={{ paddingTop: theme.spacing.xl }}
           accessibilityLabel="Loading brew session"
         >
           <ActivityIndicator
@@ -295,7 +283,7 @@ export const BrewSessionScreen: React.FC = () => {
             color={theme.colors.accent.gold}
             accessibilityLabel="Loading"
           />
-        </Content>
+        </ScreenScroll>
       </Container>
     );
   }
@@ -305,37 +293,12 @@ export const BrewSessionScreen: React.FC = () => {
 
   return (
     <Container>
-      <Content>
-        <DoseStrip>
-          <DoseChunk>
-            <DoseTiny>Coffee</DoseTiny>
-            <DoseStrong>{sessionDose.coffeeGrams} g</DoseStrong>
-          </DoseChunk>
-          <DoseChunk>
-            <DoseTiny>{liquidLabelForMethod(recipe.brewMethod)}</DoseTiny>
-            <DoseStrong>{sessionDose.waterGrams} g</DoseStrong>
-          </DoseChunk>
-        </DoseStrip>
+      <ScreenScroll>
         <RecipeTitle>{recipe.title}</RecipeTitle>
         <StepBadge>
           Step {stepIndex + 1} of {totalSteps} · {step.time}
         </StepBadge>
         <Instruction>{step.instruction}</Instruction>
-        {nextStep ? (
-          <NextPreview accessibilityLabel="Next brewing step preview">
-            <NextLabel>Next step</NextLabel>
-            <NextMeta>At {nextStep.time}</NextMeta>
-            <NextInstruction numberOfLines={4}>
-              {nextStep.instruction}
-            </NextInstruction>
-          </NextPreview>
-        ) : null}
-        <Hint>
-          Tap Start when you begin this step. When the countdown reaches zero,
-          the brew moves on by itself. Use Skip ahead if you finish this step
-          early. If you leave the app, time resyncs when you return (see
-          README).
-        </Hint>
         <BrewTimer
           key={stepIndex}
           initialTime={timerInitialSeconds}
@@ -357,7 +320,29 @@ export const BrewSessionScreen: React.FC = () => {
               : "Moves on before this step’s timer ends"
           }
         />
-      </Content>
+        <Hint>
+          When the countdown ends, the next step starts by itself. The timer
+          keeps counting if you leave the app.
+        </Hint>
+        {nextStep ? (
+          <NextPreview accessibilityLabel="Next brewing step preview">
+            <NextTitle>Next, at {nextStep.time}</NextTitle>
+            <NextInstruction numberOfLines={4}>
+              {nextStep.instruction}
+            </NextInstruction>
+          </NextPreview>
+        ) : null}
+        <DoseStrip>
+          <DoseChunk>
+            <DoseTiny>Coffee</DoseTiny>
+            <DoseStrong>{sessionDose.coffeeGrams} g</DoseStrong>
+          </DoseChunk>
+          <DoseChunk>
+            <DoseTiny>{liquidLabelForMethod(recipe.brewMethod)}</DoseTiny>
+            <DoseStrong>{sessionDose.waterGrams} g</DoseStrong>
+          </DoseChunk>
+        </DoseStrip>
+      </ScreenScroll>
     </Container>
   );
 };

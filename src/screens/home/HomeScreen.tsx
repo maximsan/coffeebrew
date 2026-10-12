@@ -14,6 +14,8 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
 import { HomeStackParamList } from "../../navigation/types";
 import { Card } from "../../components/Card";
+import { ScreenScroll } from "../../components/ScreenScroll";
+import { BrewTimeMeta } from "../../components/BrewTimeMeta";
 import { StyledProps } from "../../theme/styled-components";
 import { recipeService, Recipe } from "../../services/recipes";
 import { brewHistoryService, BrewLogEntry } from "../../services/brewHistory";
@@ -32,11 +34,6 @@ const Container = styled(SafeAreaView).attrs({
   flex: 1;
   background-color: ${({ theme }: { theme: DefaultTheme }) =>
     theme.colors.background.primary};
-`;
-
-const Content = styled(ScrollView)<StyledProps>`
-  flex: 1;
-  padding: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.lg}px`};
 `;
 
 const Section = styled(View)<StyledProps>`
@@ -110,46 +107,6 @@ const SessionBadge = styled(Text)<StyledProps>`
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.small}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.accent.gold};
-`;
-
-const BentoGrid = styled(View)<StyledProps>`
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.md}px`};
-  margin-bottom: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.spacing.xl}px`};
-`;
-
-const BentoTile = styled(TouchableOpacity)<StyledProps>`
-  flex: 1;
-  min-width: 46%;
-  padding: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.lg}px`};
-  border-radius: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.borderRadius.lg}px`};
-  background-color: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.colors.background.secondary};
-  border-width: 1px;
-  border-color: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.colors.functional.border};
-`;
-
-const BentoTitle = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.heading};
-  font-size: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.typography.fontSize.h3}px`};
-  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
-  margin-bottom: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.spacing.xs}px`};
-`;
-
-const BentoHint = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.text};
-  font-size: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.typography.fontSize.small}px`};
-  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.secondary};
-  line-height: 18px;
 `;
 
 const SectionTitle = styled.Text<StyledProps>`
@@ -246,6 +203,7 @@ const RecipeDescription = styled(Text)<StyledProps>`
 const RecipeMeta = styled(View)<StyledProps>`
   flex-direction: row;
   align-items: center;
+  gap: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.md}px`};
   margin-top: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.spacing.sm}px`};
 `;
@@ -256,8 +214,6 @@ const MetaText = styled(Text)<StyledProps>`
     theme.typography.fontFamily.text};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.small}px`};
-  margin-right: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.spacing.sm}px`};
 `;
 
 const Centered = styled(View)<StyledProps>`
@@ -353,7 +309,7 @@ const RecipeCard = React.memo(function RecipeCard({
         {recipe.description}
       </RecipeDescription>
       <RecipeMeta>
-        <MetaText>⏱ {recipe.brewTime}</MetaText>
+        <BrewTimeMeta brewTime={recipe.brewTime} />
         <MetaText>{metaRight}</MetaText>
       </RecipeMeta>
     </Card>
@@ -447,11 +403,6 @@ export const HomeScreen = () => {
     [refreshing, onRefresh, theme.colors.accent.gold],
   );
 
-  const openMoreTab = useCallback(() => {
-    const tab = navigation.getParent();
-    tab?.navigate("More" as never);
-  }, [navigation]);
-
   const retryLoad = useCallback(() => {
     setError(null);
     setLoading(true);
@@ -474,7 +425,7 @@ export const HomeScreen = () => {
   if (error) {
     return (
       <Container>
-        <Content contentContainerStyle={{ paddingTop: 24 }}>
+        <ScreenScroll>
           <ScreenTitle accessibilityRole="header">Brew Master</ScreenTitle>
           <ErrorText accessibilityRole="alert">{error}</ErrorText>
           <Button
@@ -483,14 +434,14 @@ export const HomeScreen = () => {
             fullWidth
             accessibilityHint="Reloads the recipe list from storage"
           />
-        </Content>
+        </ScreenScroll>
       </Container>
     );
   }
 
   return (
     <Container>
-      <Content refreshControl={refreshControl}>
+      <ScreenScroll refreshControl={refreshControl}>
         <ScreenTitle>Brew Master</ScreenTitle>
         <Subtitle>Recipes for calmer mornings</Subtitle>
 
@@ -521,6 +472,7 @@ export const HomeScreen = () => {
               ))}
               <TouchableOpacity
                 onPress={() => navigation.navigate("History")}
+                hitSlop={12}
                 accessibilityRole="button"
                 accessibilityLabel="View full brew history"
               >
@@ -545,26 +497,16 @@ export const HomeScreen = () => {
           <SessionBadge>Soon</SessionBadge>
         </SessionStrip>
 
-        <BentoGrid>
-          <BentoTile onPress={() => setMethodFilter(null)} activeOpacity={0.85}>
-            <BentoTitle>Every method</BentoTitle>
-            <BentoHint>
-              Clear filters — browse the full library like a tasting flight.
-            </BentoHint>
-          </BentoTile>
-          <BentoTile onPress={openMoreTab} activeOpacity={0.85}>
-            <BentoTitle>Slower corners</BentoTitle>
-            <BentoHint>
-              Notes, roadmap, and settings — keep the counter uncluttered.
-            </BentoHint>
-          </BentoTile>
-        </BentoGrid>
-
         <Section>
           <SectionTitle>Brew methods</SectionTitle>
           <SectionCaption>Select a guide to narrow the list.</SectionCaption>
           <MethodRow contentContainerStyle={{ paddingVertical: 4 }}>
-            <MethodOrb onPress={() => setMethodFilter(null)}>
+            <MethodOrb
+              onPress={() => setMethodFilter(null)}
+              accessibilityRole="button"
+              accessibilityLabel="All methods"
+              accessibilityState={{ selected: methodFilter === null }}
+            >
               <OrbCircle $selected={methodFilter === null}>
                 <Ionicons
                   name="apps-outline"
@@ -581,7 +523,12 @@ export const HomeScreen = () => {
             {brewMethodsSorted.map((method) => {
               const sel = methodFilter === method;
               return (
-                <MethodOrb key={method} onPress={() => setMethodFilter(method)}>
+                <MethodOrb
+                  key={method}
+                  onPress={() => setMethodFilter(method)}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: sel }}
+                >
                   <OrbCircle $selected={sel}>
                     <Ionicons
                       name={brewMethodIcon(method)}
@@ -618,12 +565,16 @@ export const HomeScreen = () => {
           </Section>
         )}
 
-        <Section>
-          <SectionTitle>All recipes</SectionTitle>
-          {restRecipes.length === 0 ? (
-            <SectionCaption>No recipes for this filter yet.</SectionCaption>
-          ) : (
-            restRecipes.map((recipe) => (
+        {filteredRecipes.length === 0 && (
+          <Section>
+            <SectionCaption>No recipes to show.</SectionCaption>
+          </Section>
+        )}
+
+        {restRecipes.length > 0 && (
+          <Section>
+            <SectionTitle>More recipes</SectionTitle>
+            {restRecipes.map((recipe) => (
               <RecipeCard
                 key={recipe.id}
                 recipe={recipe}
@@ -632,10 +583,10 @@ export const HomeScreen = () => {
                   navigation.navigate("RecipeDetails", { recipeId: recipe.id })
                 }
               />
-            ))
-          )}
-        </Section>
-      </Content>
+            ))}
+          </Section>
+        )}
+      </ScreenScroll>
     </Container>
   );
 };

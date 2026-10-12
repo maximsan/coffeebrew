@@ -32,22 +32,12 @@ const HeaderPad = styled(View)<StyledProps>`
     `${theme.spacing.sm}px`};
 `;
 
-const Title = styled.Text<StyledProps>`
-  font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.heading};
-  font-size: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.typography.fontSize.h1}px`};
-  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
-`;
-
 const Caption = styled.Text<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
     theme.typography.fontFamily.text};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.small}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.tertiary};
-  margin-top: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.spacing.xs}px`};
 `;
 
 const Row = styled(TouchableOpacity)<StyledProps>`
@@ -185,9 +175,6 @@ export const HistoryScreen: React.FC = () => {
   if (loading) {
     return (
       <Container>
-        <HeaderPad>
-          <Title>Brew history</Title>
-        </HeaderPad>
         <EmptyBox>
           <ActivityIndicator color={theme.colors.accent.gold} size="large" />
         </EmptyBox>
@@ -204,7 +191,6 @@ export const HistoryScreen: React.FC = () => {
         renderItem={renderItem}
         ListHeaderComponent={
           <HeaderPad>
-            <Title>Brew history</Title>
             <Caption>
               Stored on this device only — last {MAX_BREW_HISTORY_ENTRIES}{" "}
               brews.

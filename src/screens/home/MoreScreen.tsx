@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styled, useTheme, DefaultTheme } from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import type { NavigationProp } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import { ScreenScroll } from "../../components/ScreenScroll";
 import { StyledProps } from "../../theme/styled-components";
 import { MainTabParamList } from "../../navigation/types";
 
@@ -14,11 +15,6 @@ const Container = styled(SafeAreaView).attrs({
   flex: 1;
   background-color: ${({ theme }: { theme: DefaultTheme }) =>
     theme.colors.background.primary};
-`;
-
-const Content = styled(ScrollView)<StyledProps>`
-  flex: 1;
-  padding: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.lg}px`};
 `;
 
 const Title = styled(Text)<StyledProps>`
@@ -92,12 +88,9 @@ export const MoreScreen: React.FC = () => {
 
   return (
     <Container>
-      <Content>
+      <ScreenScroll>
         <Title>More</Title>
-        <Body>
-          Settings and accounts can land here later. Your brew history stays on
-          this device only.
-        </Body>
+        <Body>Your brew history stays on this device.</Body>
 
         <LinkRow
           onPress={openHistory}
@@ -122,7 +115,7 @@ export const MoreScreen: React.FC = () => {
             color={theme.colors.text.tertiary}
           />
         </LinkRow>
-      </Content>
+      </ScreenScroll>
     </Container>
   );
 };

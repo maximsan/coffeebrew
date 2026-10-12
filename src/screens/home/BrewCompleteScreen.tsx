@@ -1,17 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import {
-  View,
-  ScrollView,
-  Text,
-  Alert,
-  TouchableOpacity,
-  Platform,
-} from "react-native";
+import { View, Text, Alert, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { styled, useTheme, DefaultTheme } from "styled-components/native";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
 import { HomeStackParamList } from "../../navigation/types";
+import { ScreenScroll } from "../../components/ScreenScroll";
 import { StyledProps } from "../../theme/styled-components";
 import { Button } from "../../components/Button";
 import { liquidLabelForMethod } from "../../services/recipeDose";
@@ -22,7 +17,10 @@ type T = { theme: DefaultTheme };
 type Route = RouteProp<HomeStackParamList, "BrewComplete">;
 type Nav = NativeStackNavigationProp<HomeStackParamList, "BrewComplete">;
 
-const Container = styled(View)<StyledProps>`
+/** The stack hides its header here, so the screen keeps clear of the status bar itself. */
+const Container = styled(SafeAreaView).attrs({
+  edges: ["top", "left", "right"],
+})<StyledProps>`
   flex: 1;
   background-color: ${({ theme }: T) => theme.colors.background.primary};
 `;
@@ -37,12 +35,6 @@ const CloseLink = styled(Text)<StyledProps>`
   font-family: ${({ theme }: T) => theme.typography.fontFamily.textMedium};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: T) => theme.colors.accent.gold};
-`;
-
-const Content = styled(ScrollView)<StyledProps>`
-  flex: 1;
-  padding: 0 ${({ theme }: T) => `${theme.spacing.lg}px`};
-  padding-bottom: ${({ theme }: T) => `${theme.spacing.xl}px`};
 `;
 
 const Hero = styled(View)<StyledProps>`
@@ -60,6 +52,7 @@ const MugRing = styled(View)<StyledProps>`
   background-color: ${({ theme }: T) => theme.colors.background.secondary};
   border-width: 2px;
   border-color: ${({ theme }: T) => theme.colors.functional.border};
+  margin-bottom: ${({ theme }: T) => `${theme.spacing.lg}px`};
 `;
 
 const Headline = styled(Text)<StyledProps>`
@@ -88,17 +81,17 @@ const SummaryCard = styled(View)<StyledProps>`
   border-color: ${({ theme }: T) => theme.colors.functional.border};
 `;
 
-const CardStamp = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.text};
-  font-size: ${({ theme }: T) => `${theme.typography.fontSize.small}px`};
-  color: ${({ theme }: T) => theme.colors.text.tertiary};
-  margin-bottom: ${({ theme }: T) => `${theme.spacing.sm}px`};
-`;
-
 const MethodTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h2}px`};
   color: ${({ theme }: T) => theme.colors.text.primary};
+  margin-bottom: ${({ theme }: T) => `${theme.spacing.xs}px`};
+`;
+
+const CardStamp = styled(Text)<StyledProps>`
+  font-family: ${({ theme }: T) => theme.typography.fontFamily.text};
+  font-size: ${({ theme }: T) => `${theme.typography.fontSize.small}px`};
+  color: ${({ theme }: T) => theme.colors.text.tertiary};
   margin-bottom: ${({ theme }: T) => `${theme.spacing.lg}px`};
 `;
 
@@ -108,8 +101,10 @@ const StatGrid = styled(View)<StyledProps>`
   gap: ${({ theme }: T) => `${theme.spacing.md}px`};
 `;
 
+/** Two cells per row on any phone width: each grows from 40% to share the row. */
 const StatCell = styled(View)<StyledProps>`
-  width: 47%;
+  flex-grow: 1;
+  flex-basis: 40%;
   padding: ${({ theme }: T) => `${theme.spacing.md}px`};
   border-radius: ${({ theme }: T) => `${theme.borderRadius.md}px`};
   background-color: ${({ theme }: T) => theme.colors.background.secondary};
@@ -126,23 +121,6 @@ const StatValue = styled(Text)<StyledProps>`
   font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: T) => theme.colors.text.primary};
-`;
-
-/** Keeps the wave's contrast against the background at 1.33, as it was before the brew-path colours. */
-const WAVE_OPACITY = 0.2;
-
-const WaveDecoration = styled(View)<StyledProps>`
-  height: 4px;
-  margin-top: ${({ theme }: T) => `${theme.spacing.lg}px`};
-  margin-bottom: ${({ theme }: T) => `${theme.spacing.sm}px`};
-  border-radius: 2px;
-  background-color: ${({ theme }: T) => theme.colors.accent.gold};
-  opacity: ${WAVE_OPACITY};
-`;
-
-const Actions = styled(View)<StyledProps>`
-  margin-top: ${({ theme }: T) => `${theme.spacing.lg}px`};
-  gap: ${({ theme }: T) => `${theme.spacing.md}px`};
 `;
 
 function formatStamp(): string {
@@ -217,13 +195,6 @@ export const BrewCompleteScreen: React.FC = () => {
     navigation.popToTop();
   };
 
-  const notesPlaceholder = () => {
-    Alert.alert(
-      "Tasting notes",
-      "A dedicated journal is on the roadmap — for now, jot flavors in your favorite notes app.",
-    );
-  };
-
   return (
     <Container>
       <TopBar>
@@ -238,7 +209,7 @@ export const BrewCompleteScreen: React.FC = () => {
         </TouchableOpacity>
       </TopBar>
 
-      <Content>
+      <ScreenScroll contentContainerStyle={{ paddingTop: 0 }}>
         <Hero>
           <MugRing>
             <Ionicons
@@ -247,7 +218,6 @@ export const BrewCompleteScreen: React.FC = () => {
               color={theme.colors.functional.water}
             />
           </MugRing>
-          <WaveDecoration />
           <Headline>Nicely done</Headline>
           <Subhead>
             Take a sip while it cools — warm cups suit bright acids; cooler cups
@@ -256,8 +226,8 @@ export const BrewCompleteScreen: React.FC = () => {
         </Hero>
 
         <SummaryCard>
-          <CardStamp>{formatStamp()}</CardStamp>
           <MethodTitle numberOfLines={2}>{recipeTitle}</MethodTitle>
+          <CardStamp>{formatStamp()}</CardStamp>
           <StatGrid>
             <StatCell>
               <StatLabel>Coffee</StatLabel>
@@ -286,20 +256,13 @@ export const BrewCompleteScreen: React.FC = () => {
           </StatGrid>
         </SummaryCard>
 
-        <Actions>
-          <Button title="Back to home" onPress={backHome} fullWidth />
-          <Button
-            title="Jot a quick note"
-            onPress={notesPlaceholder}
-            variant="outline"
-            fullWidth
-          />
-        </Actions>
-
-        {Platform.OS === "ios" ? (
-          <Text style={{ height: theme.spacing.lg }} />
-        ) : null}
-      </Content>
+        <Button
+          title="Back to home"
+          onPress={backHome}
+          fullWidth
+          style={{ marginTop: theme.spacing.lg }}
+        />
+      </ScreenScroll>
     </Container>
   );
 };
