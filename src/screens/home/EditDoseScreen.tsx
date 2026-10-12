@@ -73,7 +73,7 @@ const Card = styled(View)<StyledProps>`
   background-color: ${({ theme }: T) => theme.colors.background.card};
   border-width: 1px;
   border-color: ${({ theme }: T) => theme.colors.functional.border};
-  margin-bottom: ${({ theme }: T) => `${theme.spacing.lg}px`};
+  margin-bottom: ${({ theme }: T) => `${theme.spacing.sm}px`};
 `;
 
 const Row = styled(View)<StyledProps>`
@@ -140,8 +140,7 @@ const Hint = styled(Text)<StyledProps>`
   font-family: ${({ theme }: T) => theme.typography.fontFamily.text};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.small}px`};
   color: ${({ theme }: T) => theme.colors.text.tertiary};
-  line-height: 20px;
-  margin-top: ${({ theme }: T) => `${theme.spacing.md}px`};
+  line-height: 18px;
 `;
 
 const ValueSpacer = styled(ValueUnit)<StyledProps>`
@@ -220,15 +219,11 @@ export const EditDoseScreen: React.FC = () => {
   }, [coffee, water]);
 
   const save = useCallback(() => {
-    navigation.navigate({
-      name: "RecipeDetails",
-      params: {
-        recipeId,
-        sessionCoffee: coffee,
-        sessionWater: water,
-      },
-      merge: true,
-    });
+    navigation.navigate(
+      "RecipeDetails",
+      { recipeId, sessionCoffee: coffee, sessionWater: water },
+      { merge: true },
+    );
   }, [navigation, recipeId, coffee, water]);
 
   const cancel = useCallback(() => {

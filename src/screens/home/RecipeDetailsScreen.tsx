@@ -318,8 +318,7 @@ export const RecipeDetailsScreen = () => {
                 </DoseAccent>
               </DoseRow>
               <DoseCaption>
-                Optional: tune coffee and yield before you start — your session
-                uses these numbers on the summary screen.
+                Adjust dose changes these amounts for this brew only.
               </DoseCaption>
             </DoseCard>
           ) : null}
