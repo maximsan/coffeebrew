@@ -26,7 +26,7 @@ const TimerDisplay = styled.Text`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
     theme.typography.fontFamily.mono};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.typography.fontSize.h1}px`};
+    `${theme.typography.fontSize.timer}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.accent.gold};
   text-align: center;
 `;
@@ -72,7 +72,7 @@ const TimerButton = styled.TouchableOpacity<{
 
 const ButtonText = styled.Text<{ variant: "primary" | "secondary" }>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.serifText};
+    theme.typography.fontFamily.textMedium};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.body}px`};
   color: ${({
@@ -215,7 +215,7 @@ export const BrewTimer: React.FC<BrewTimerProps> = ({
 
   return (
     <TimerContainer accessibilityLiveRegion="polite">
-      <TimerHint>Countdown · tap Start when you begin this step</TimerHint>
+      <TimerHint>Tap Start when you begin this step</TimerHint>
       <TimerDisplay
         accessibilityLabel={`Time remaining ${timeSpoken}`}
         importantForAccessibility="yes"

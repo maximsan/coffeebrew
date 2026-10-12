@@ -36,6 +36,8 @@ export interface Theme {
       mono: FontName;
     };
     fontSize: {
+      /** The brew countdown only: the one number read from across the counter. */
+      timer: number;
       h1: number;
       h2: number;
       h3: number;

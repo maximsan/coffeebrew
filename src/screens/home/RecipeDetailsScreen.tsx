@@ -30,7 +30,7 @@ const Container = styled.View<StyledProps>`
 
 const Content = styled.ScrollView<StyledProps>`
   flex: 1;
-  padding: ${({ theme }: StyledProps) => `${theme.spacing.md}px`};
+  padding: ${({ theme }: StyledProps) => `${theme.spacing.lg}px`};
 `;
 
 const HeaderImage = styled(Image)<StyledProps>`
@@ -42,7 +42,7 @@ const HeaderImage = styled(Image)<StyledProps>`
 `;
 
 const DetailsContainer = styled(View)<StyledProps>`
-  padding: ${({ theme }: StyledProps) => `${theme.spacing.lg}px`};
+  padding-bottom: ${({ theme }: StyledProps) => `${theme.spacing.lg}px`};
 `;
 
 const Title = styled.Text<StyledProps>`
@@ -66,6 +66,12 @@ const MetaRow = styled.View<StyledProps>`
   flex-wrap: wrap;
   margin-top: ${({ theme }: StyledProps) => `${theme.spacing.md}px`};
   gap: ${({ theme }: StyledProps) => `${theme.spacing.md}px`};
+`;
+
+const MetaItem = styled.View<StyledProps>`
+  flex-direction: row;
+  align-items: center;
+  gap: ${({ theme }: StyledProps) => `${theme.spacing.xs}px`};
 `;
 
 const MetaText = styled.Text<StyledProps>`
@@ -97,7 +103,7 @@ const StepsHeaderLeft = styled(View)`
 const StepsHeaderTitle = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
     theme.typography.fontFamily.heading};
-  font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h2}px`};
+  font-size: ${({ theme }: StyledProps) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: StyledProps) => theme.colors.text.primary};
 `;
 
@@ -234,12 +240,13 @@ export const RecipeDetailsScreen = () => {
   if (error) {
     return (
       <Container>
-        <Content contentContainerStyle={{ padding: 24 }}>
+        <Content>
           <Title accessibilityRole="header">Something went wrong</Title>
           <Description accessibilityRole="alert">{error}</Description>
           <Button
             title="Go back"
             onPress={() => navigation.goBack()}
+            style={{ marginTop: theme.spacing.lg }}
             accessibilityHint="Returns to the previous screen"
           />
         </Content>
@@ -281,7 +288,14 @@ export const RecipeDetailsScreen = () => {
           <Title>{recipe.title}</Title>
           <Description>{recipe.description}</Description>
           <MetaRow>
-            <MetaText>⏱ {recipe.brewTime}</MetaText>
+            <MetaItem>
+              <Ionicons
+                name="time-outline"
+                size={14}
+                color={theme.colors.text.tertiary}
+              />
+              <MetaText>{recipe.brewTime}</MetaText>
+            </MetaItem>
             <MetaText>{recipe.difficulty}</MetaText>
             <MetaText>{recipe.brewMethod}</MetaText>
           </MetaRow>
@@ -322,7 +336,7 @@ export const RecipeDetailsScreen = () => {
             }
             variant="outline"
             fullWidth
-            style={{ marginTop: 20 }}
+            style={{ marginTop: theme.spacing.lg }}
             accessibilityHint="Change coffee and water amounts for this session"
           />
 
@@ -337,7 +351,7 @@ export const RecipeDetailsScreen = () => {
             }
             variant="primary"
             fullWidth
-            style={{ marginTop: 12 }}
+            style={{ marginTop: theme.spacing.md }}
             accessibilityHint="Opens the guided brewing steps and timer"
           />
 

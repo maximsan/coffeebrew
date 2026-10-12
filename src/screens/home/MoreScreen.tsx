@@ -94,10 +94,7 @@ export const MoreScreen: React.FC = () => {
     <Container>
       <Content>
         <Title>More</Title>
-        <Body>
-          Settings and accounts can land here later. Your brew history stays on
-          this device only.
-        </Body>
+        <Body>Your brew history stays on this device.</Body>
 
         <LinkRow
           onPress={openHistory}

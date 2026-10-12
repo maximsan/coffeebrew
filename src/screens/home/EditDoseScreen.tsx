@@ -11,8 +11,10 @@ import { styled, useTheme, DefaultTheme } from "styled-components/native";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeStackParamList } from "../../navigation/types";
 import { StyledProps } from "../../theme/styled-components";
+import { Button } from "../../components/Button";
 import {
   formatRatioParts,
   liquidLabelForMethod,
@@ -27,7 +29,10 @@ const Safe = styled(KeyboardAvoidingView)`
   flex: 1;
 `;
 
-const Container = styled(View)<StyledProps>`
+/** The stack hides its header here, so the screen keeps clear of the status bar itself. */
+const Container = styled(SafeAreaView).attrs({
+  edges: ["top", "left", "right"],
+})<StyledProps>`
   flex: 1;
   background-color: ${({ theme }: T) => theme.colors.background.primary};
 `;
@@ -44,6 +49,12 @@ const HeaderRow = styled(View)<StyledProps>`
   margin-bottom: ${({ theme }: T) => `${theme.spacing.lg}px`};
 `;
 
+/** Equal flex on both sides keeps the title centred whatever the Cancel width. */
+const HeaderSide = styled(View)`
+  flex: 1;
+  align-items: flex-start;
+`;
+
 const HeaderBtn = styled(Text)<StyledProps>`
   font-family: ${({ theme }: T) => theme.typography.fontFamily.textMedium};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.body}px`};
@@ -54,13 +65,6 @@ const HeaderTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.h3}px`};
   color: ${({ theme }: T) => theme.colors.text.primary};
-`;
-
-const SectionTitle = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: T) => theme.typography.fontFamily.heading};
-  font-size: ${({ theme }: T) => `${theme.typography.fontSize.h3}px`};
-  color: ${({ theme }: T) => theme.colors.text.primary};
-  margin-bottom: ${({ theme }: T) => `${theme.spacing.md}px`};
 `;
 
 const Card = styled(View)<StyledProps>`
@@ -108,9 +112,11 @@ const Stepper = styled(View)<StyledProps>`
   align-items: center;
 `;
 
-const StepBtn = styled(TouchableOpacity)<StyledProps>`
-  width: 40px;
-  height: 40px;
+const StepBtn = styled(TouchableOpacity).attrs({
+  accessibilityRole: "button",
+})<StyledProps>`
+  width: 44px;
+  height: 44px;
   border-radius: ${({ theme }: T) => `${theme.borderRadius.md}px`};
   background-color: ${({ theme }: T) => theme.colors.background.tertiary};
   align-items: center;
@@ -121,10 +127,7 @@ const RatioRow = styled(View)<StyledProps>`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-top: ${({ theme }: T) => `${theme.spacing.md}px`};
-  margin-top: ${({ theme }: T) => `${theme.spacing.sm}px`};
-  border-top-width: 1px;
-  border-top-color: ${({ theme }: T) => theme.colors.functional.border};
+  margin-top: ${({ theme }: T) => `${theme.spacing.md}px`};
 `;
 
 const RatioText = styled(Text)<StyledProps>`
@@ -141,8 +144,14 @@ const Hint = styled(Text)<StyledProps>`
   margin-top: ${({ theme }: T) => `${theme.spacing.md}px`};
 `;
 
-const DoneBtnWrap = styled(View)<StyledProps>`
-  margin-top: ${({ theme }: T) => `${theme.spacing.md}px`};
+const ValueSpacer = styled(ValueUnit)<StyledProps>`
+  margin-horizontal: ${({ theme }: T) => `${theme.spacing.md}px`};
+`;
+
+const RatioToggle = styled(TouchableOpacity)<StyledProps>`
+  flex-direction: row;
+  align-items: center;
+  gap: ${({ theme }: T) => `${theme.spacing.sm}px`};
 `;
 
 function clamp(n: number, min: number, max: number): number {
@@ -231,14 +240,20 @@ export const EditDoseScreen: React.FC = () => {
       <Container>
         <Content keyboardShouldPersistTaps="handled">
           <HeaderRow>
-            <TouchableOpacity onPress={cancel} hitSlop={12}>
-              <HeaderBtn>Cancel</HeaderBtn>
-            </TouchableOpacity>
-            <HeaderTitle>Edit dose</HeaderTitle>
-            <View style={{ width: 56 }} />
+            <HeaderSide>
+              <TouchableOpacity
+                onPress={cancel}
+                hitSlop={12}
+                accessibilityRole="button"
+                accessibilityHint="Returns to the recipe without changing the dose"
+              >
+                <HeaderBtn>Cancel</HeaderBtn>
+              </TouchableOpacity>
+            </HeaderSide>
+            <HeaderTitle accessibilityRole="header">Edit dose</HeaderTitle>
+            <HeaderSide />
           </HeaderRow>
 
-          <SectionTitle>Dose amount</SectionTitle>
           <Card>
             <Row>
               <Label>Coffee</Label>
@@ -253,10 +268,10 @@ export const EditDoseScreen: React.FC = () => {
                     color={theme.colors.text.primary}
                   />
                 </StepBtn>
-                <ValueUnit style={{ marginHorizontal: 16 }}>
+                <ValueSpacer>
                   <ValueNum>{coffee}</ValueNum>
                   <Unit>g</Unit>
-                </ValueUnit>
+                </ValueSpacer>
                 <StepBtn
                   onPress={() => bumpCoffee(1)}
                   accessibilityLabel="More coffee"
@@ -282,10 +297,10 @@ export const EditDoseScreen: React.FC = () => {
                     color={theme.colors.text.primary}
                   />
                 </StepBtn>
-                <ValueUnit style={{ marginHorizontal: 16 }}>
+                <ValueSpacer>
                   <ValueNum>{water}</ValueNum>
                   <Unit>g</Unit>
-                </ValueUnit>
+                </ValueSpacer>
                 <StepBtn
                   onPress={() => bumpWater(5)}
                   accessibilityLabel={`More ${liquidLabel}`}
@@ -300,23 +315,22 @@ export const EditDoseScreen: React.FC = () => {
             </Row>
             <RatioRow>
               <Label>Ratio</Label>
-              <TouchableOpacity
+              <RatioToggle
                 onPress={toggleLock}
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
+                hitSlop={12}
+                accessibilityRole="switch"
+                accessibilityState={{ checked: ratioLocked }}
+                accessibilityLabel={`Lock ratio ${ratioParts.left} to ${ratioParts.right}`}
               >
                 <RatioText>
                   {ratioParts.left} : {ratioParts.right}
                 </RatioText>
                 <Ionicons
-                  style={{ marginLeft: 8 }}
                   name={ratioLocked ? "lock-closed" : "lock-open-outline"}
                   size={22}
                   color={theme.colors.text.tertiary}
                 />
-              </TouchableOpacity>
+              </RatioToggle>
             </RatioRow>
           </Card>
 
@@ -326,28 +340,13 @@ export const EditDoseScreen: React.FC = () => {
               : "Ratio unlocked — adjust coffee and water independently."}
           </Hint>
 
-          <DoneBtnWrap>
-            <TouchableOpacity onPress={save} activeOpacity={0.85}>
-              <View
-                style={{
-                  backgroundColor: theme.colors.accent.gold,
-                  borderRadius: theme.borderRadius.md,
-                  paddingVertical: theme.spacing.md,
-                  alignItems: "center",
-                }}
-              >
-                <Text
-                  style={{
-                    fontFamily: theme.typography.fontFamily.textMedium,
-                    fontSize: theme.typography.fontSize.body,
-                    color: theme.colors.text.onAccent,
-                  }}
-                >
-                  Done
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </DoneBtnWrap>
+          <Button
+            title="Done"
+            onPress={save}
+            fullWidth
+            style={{ marginTop: theme.spacing.lg }}
+            accessibilityHint="Uses these amounts for this brew"
+          />
         </Content>
       </Container>
     </Safe>

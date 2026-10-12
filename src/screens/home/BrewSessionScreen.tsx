@@ -71,8 +71,10 @@ const Hint = styled.Text<StyledProps>`
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.typography.fontSize.small}px`};
   color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.tertiary};
+  line-height: 18px;
+  margin-top: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.sm}px`};
   margin-bottom: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.spacing.md}px`};
+    `${theme.spacing.lg}px`};
 `;
 
 const NextPreview = styled(View)<StyledProps>`
@@ -88,24 +90,14 @@ const NextPreview = styled(View)<StyledProps>`
     theme.colors.functional.border};
 `;
 
-const NextLabel = styled(Text)<StyledProps>`
+const NextTitle = styled(Text)<StyledProps>`
   font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.serifText};
+    theme.typography.fontFamily.textMedium};
   font-size: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.typography.fontSize.small}px`};
-  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.accent.gold};
+    `${theme.typography.fontSize.body}px`};
+  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.primary};
   margin-bottom: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.spacing.xs}px`};
-`;
-
-const NextMeta = styled(Text)<StyledProps>`
-  font-family: ${({ theme }: { theme: DefaultTheme }) =>
-    theme.typography.fontFamily.text};
-  font-size: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.typography.fontSize.small}px`};
-  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.tertiary};
-  margin-bottom: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.spacing.sm}px`};
 `;
 
 const NextInstruction = styled(Text)<StyledProps>`
@@ -306,36 +298,11 @@ export const BrewSessionScreen: React.FC = () => {
   return (
     <Container>
       <Content>
-        <DoseStrip>
-          <DoseChunk>
-            <DoseTiny>Coffee</DoseTiny>
-            <DoseStrong>{sessionDose.coffeeGrams} g</DoseStrong>
-          </DoseChunk>
-          <DoseChunk>
-            <DoseTiny>{liquidLabelForMethod(recipe.brewMethod)}</DoseTiny>
-            <DoseStrong>{sessionDose.waterGrams} g</DoseStrong>
-          </DoseChunk>
-        </DoseStrip>
         <RecipeTitle>{recipe.title}</RecipeTitle>
         <StepBadge>
           Step {stepIndex + 1} of {totalSteps} · {step.time}
         </StepBadge>
         <Instruction>{step.instruction}</Instruction>
-        {nextStep ? (
-          <NextPreview accessibilityLabel="Next brewing step preview">
-            <NextLabel>Next step</NextLabel>
-            <NextMeta>At {nextStep.time}</NextMeta>
-            <NextInstruction numberOfLines={4}>
-              {nextStep.instruction}
-            </NextInstruction>
-          </NextPreview>
-        ) : null}
-        <Hint>
-          Tap Start when you begin this step. When the countdown reaches zero,
-          the brew moves on by itself. Use Skip ahead if you finish this step
-          early. If you leave the app, time resyncs when you return (see
-          README).
-        </Hint>
         <BrewTimer
           key={stepIndex}
           initialTime={timerInitialSeconds}
@@ -357,6 +324,28 @@ export const BrewSessionScreen: React.FC = () => {
               : "Moves on before this step’s timer ends"
           }
         />
+        <Hint>
+          When the countdown ends, the next step starts by itself. The timer
+          keeps counting if you leave the app.
+        </Hint>
+        {nextStep ? (
+          <NextPreview accessibilityLabel="Next brewing step preview">
+            <NextTitle>Next, at {nextStep.time}</NextTitle>
+            <NextInstruction numberOfLines={4}>
+              {nextStep.instruction}
+            </NextInstruction>
+          </NextPreview>
+        ) : null}
+        <DoseStrip>
+          <DoseChunk>
+            <DoseTiny>Coffee</DoseTiny>
+            <DoseStrong>{sessionDose.coffeeGrams} g</DoseStrong>
+          </DoseChunk>
+          <DoseChunk>
+            <DoseTiny>{liquidLabelForMethod(recipe.brewMethod)}</DoseTiny>
+            <DoseStrong>{sessionDose.waterGrams} g</DoseStrong>
+          </DoseChunk>
+        </DoseStrip>
       </Content>
     </Container>
   );

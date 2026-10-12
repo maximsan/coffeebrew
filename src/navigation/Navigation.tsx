@@ -62,7 +62,7 @@ const HomeNavigator = () => {
       <HomeStack.Screen
         name="History"
         component={HistoryScreen}
-        options={{ title: "History" }}
+        options={{ title: "Brew history" }}
       />
     </HomeStack.Navigator>
   );
@@ -81,15 +81,16 @@ const TabNavigator = () => {
                 ? "home"
                 : "home-outline"
               : focused
-                ? "settings"
-                : "settings-outline";
+                ? "ellipsis-horizontal-circle"
+                : "ellipsis-horizontal-circle-outline";
           return (
             <Ionicons name={iconName as never} size={size} color={color} />
           );
         },
         tabBarInactiveTintColor: theme.colors.text.tertiary,
+        /** The bar's own background sets it apart from the screen, so no top border. */
         tabBarStyle: {
-          borderTopWidth: 1,
+          borderTopWidth: 0,
           paddingTop: 4,
         },
         headerShown: false,

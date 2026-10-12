@@ -17,6 +17,7 @@ const shared: Omit<Theme, "colors"> = {
       mono: "IBMPlexMono-Medium",
     },
     fontSize: {
+      timer: 56,
       h1: 30,
       h2: 26,
       h3: 19,
