@@ -275,7 +275,7 @@ export const BrewSessionScreen: React.FC = () => {
     return (
       <Container>
         <ScreenScroll
-          contentContainerStyle={{ paddingTop: 48 }}
+          contentContainerStyle={{ paddingTop: theme.spacing.xl }}
           accessibilityLabel="Loading brew session"
         >
           <ActivityIndicator

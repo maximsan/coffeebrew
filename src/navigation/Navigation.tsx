@@ -88,7 +88,7 @@ const TabNavigator = () => {
           );
         },
         tabBarInactiveTintColor: theme.colors.text.tertiary,
-        /** The bar's own background sets it apart from the screen, so no top border. */
+        /** No top border: the tab bar's own background sets it apart from the screen. */
         tabBarStyle: { borderTopWidth: 0 },
         headerShown: false,
       })}

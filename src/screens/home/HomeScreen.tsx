@@ -15,6 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { HomeStackParamList } from "../../navigation/types";
 import { Card } from "../../components/Card";
 import { ScreenScroll } from "../../components/ScreenScroll";
+import { BrewTimeMeta } from "../../components/BrewTimeMeta";
 import { StyledProps } from "../../theme/styled-components";
 import { recipeService, Recipe } from "../../services/recipes";
 import { brewHistoryService, BrewLogEntry } from "../../services/brewHistory";
@@ -202,16 +203,9 @@ const RecipeDescription = styled(Text)<StyledProps>`
 const RecipeMeta = styled(View)<StyledProps>`
   flex-direction: row;
   align-items: center;
+  gap: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.md}px`};
   margin-top: ${({ theme }: { theme: DefaultTheme }) =>
     `${theme.spacing.sm}px`};
-`;
-
-const MetaItem = styled(View)<StyledProps>`
-  flex-direction: row;
-  align-items: center;
-  gap: ${({ theme }: { theme: DefaultTheme }) => `${theme.spacing.xs}px`};
-  margin-right: ${({ theme }: { theme: DefaultTheme }) =>
-    `${theme.spacing.md}px`};
 `;
 
 const MetaText = styled(Text)<StyledProps>`
@@ -303,7 +297,6 @@ const RecipeCard = React.memo(function RecipeCard({
   onPress,
   variant,
 }: RecipeCardProps) {
-  const theme = useTheme();
   const metaRight =
     variant === "featured" ? recipe.difficulty : recipe.brewMethod;
   return (
@@ -316,14 +309,7 @@ const RecipeCard = React.memo(function RecipeCard({
         {recipe.description}
       </RecipeDescription>
       <RecipeMeta>
-        <MetaItem>
-          <Ionicons
-            name="time-outline"
-            size={14}
-            color={theme.colors.text.tertiary}
-          />
-          <MetaText>{recipe.brewTime}</MetaText>
-        </MetaItem>
+        <BrewTimeMeta brewTime={recipe.brewTime} />
         <MetaText>{metaRight}</MetaText>
       </RecipeMeta>
     </Card>
@@ -439,7 +425,7 @@ export const HomeScreen = () => {
   if (error) {
     return (
       <Container>
-        <ScreenScroll contentContainerStyle={{ paddingTop: 24 }}>
+        <ScreenScroll>
           <ScreenTitle accessibilityRole="header">Brew Master</ScreenTitle>
           <ErrorText accessibilityRole="alert">{error}</ErrorText>
           <Button
@@ -579,9 +565,11 @@ export const HomeScreen = () => {
           </Section>
         )}
 
-        {filteredRecipes.length === 0 ? (
-          <SectionCaption>No recipes to show.</SectionCaption>
-        ) : null}
+        {filteredRecipes.length === 0 && (
+          <Section>
+            <SectionCaption>No recipes to show.</SectionCaption>
+          </Section>
+        )}
 
         {restRecipes.length > 0 && (
           <Section>

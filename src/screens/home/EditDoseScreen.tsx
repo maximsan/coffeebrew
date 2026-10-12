@@ -138,7 +138,7 @@ const Hint = styled(Text)<StyledProps>`
   line-height: 18px;
 `;
 
-const ValueSpacer = styled(ValueUnit)<StyledProps>`
+const StepperValue = styled(ValueUnit)<StyledProps>`
   margin-horizontal: ${({ theme }: T) => `${theme.spacing.md}px`};
 `;
 
@@ -258,10 +258,10 @@ export const EditDoseScreen: React.FC = () => {
                     color={theme.colors.text.primary}
                   />
                 </StepBtn>
-                <ValueSpacer>
+                <StepperValue>
                   <ValueNum>{coffee}</ValueNum>
                   <Unit>g</Unit>
-                </ValueSpacer>
+                </StepperValue>
                 <StepBtn
                   onPress={() => bumpCoffee(1)}
                   accessibilityLabel="More coffee"
@@ -287,10 +287,10 @@ export const EditDoseScreen: React.FC = () => {
                     color={theme.colors.text.primary}
                   />
                 </StepBtn>
-                <ValueSpacer>
+                <StepperValue>
                   <ValueNum>{water}</ValueNum>
                   <Unit>g</Unit>
-                </ValueSpacer>
+                </StepperValue>
                 <StepBtn
                   onPress={() => bumpWater(5)}
                   accessibilityLabel={`More ${liquidLabel}`}
@@ -310,7 +310,10 @@ export const EditDoseScreen: React.FC = () => {
                 hitSlop={12}
                 accessibilityRole="switch"
                 accessibilityState={{ checked: ratioLocked }}
-                accessibilityLabel={`Lock ratio ${ratioParts.left} to ${ratioParts.right}`}
+                accessibilityLabel="Lock ratio"
+                accessibilityValue={{
+                  text: `${ratioParts.left} to ${ratioParts.right}`,
+                }}
               >
                 <RatioText>
                   {ratioParts.left} : {ratioParts.right}

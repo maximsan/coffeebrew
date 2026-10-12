@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { View, ScrollView, Text, Alert, TouchableOpacity } from "react-native";
+import { View, Text, Alert, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styled, useTheme, DefaultTheme } from "styled-components/native";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
 import { HomeStackParamList } from "../../navigation/types";
+import { ScreenScroll } from "../../components/ScreenScroll";
 import { StyledProps } from "../../theme/styled-components";
 import { Button } from "../../components/Button";
 import { liquidLabelForMethod } from "../../services/recipeDose";
@@ -34,15 +35,6 @@ const CloseLink = styled(Text)<StyledProps>`
   font-family: ${({ theme }: T) => theme.typography.fontFamily.textMedium};
   font-size: ${({ theme }: T) => `${theme.typography.fontSize.body}px`};
   color: ${({ theme }: T) => theme.colors.accent.gold};
-`;
-
-const Content = styled(ScrollView).attrs(({ theme }: T) => ({
-  contentContainerStyle: {
-    paddingHorizontal: theme.spacing.lg,
-    paddingBottom: theme.spacing.xl,
-  },
-}))<StyledProps>`
-  flex: 1;
 `;
 
 const Hero = styled(View)<StyledProps>`
@@ -131,10 +123,6 @@ const StatValue = styled(Text)<StyledProps>`
   color: ${({ theme }: T) => theme.colors.text.primary};
 `;
 
-const Actions = styled(View)<StyledProps>`
-  margin-top: ${({ theme }: T) => `${theme.spacing.lg}px`};
-`;
-
 function formatStamp(): string {
   const d = new Date();
   const opts: Intl.DateTimeFormatOptions = {
@@ -221,7 +209,7 @@ export const BrewCompleteScreen: React.FC = () => {
         </TouchableOpacity>
       </TopBar>
 
-      <Content>
+      <ScreenScroll contentContainerStyle={{ paddingTop: 0 }}>
         <Hero>
           <MugRing>
             <Ionicons
@@ -268,10 +256,13 @@ export const BrewCompleteScreen: React.FC = () => {
           </StatGrid>
         </SummaryCard>
 
-        <Actions>
-          <Button title="Back to home" onPress={backHome} fullWidth />
-        </Actions>
-      </Content>
+        <Button
+          title="Back to home"
+          onPress={backHome}
+          fullWidth
+          style={{ marginTop: theme.spacing.lg }}
+        />
+      </ScreenScroll>
     </Container>
   );
 };

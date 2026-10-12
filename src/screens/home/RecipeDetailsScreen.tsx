@@ -7,6 +7,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "../../navigation/types";
 import { Button } from "../../components/Button";
 import { ScreenScroll } from "../../components/ScreenScroll";
+import { BrewTimeMeta } from "../../components/BrewTimeMeta";
 import { StyledProps } from "../../theme/styled-components";
 import { recipeService, Recipe } from "../../services/recipes";
 import { recipeImageSource } from "../../utils/recipeImages";
@@ -37,10 +38,6 @@ const HeaderImage = styled(Image)<StyledProps>`
     theme.colors.background.secondary};
 `;
 
-const DetailsContainer = styled(View)<StyledProps>`
-  padding-bottom: ${({ theme }: StyledProps) => `${theme.spacing.lg}px`};
-`;
-
 const Title = styled.Text<StyledProps>`
   font-family: ${({ theme }: StyledProps) =>
     theme.typography.fontFamily.heading};
@@ -62,12 +59,6 @@ const MetaRow = styled.View<StyledProps>`
   flex-wrap: wrap;
   margin-top: ${({ theme }: StyledProps) => `${theme.spacing.md}px`};
   gap: ${({ theme }: StyledProps) => `${theme.spacing.md}px`};
-`;
-
-const MetaItem = styled.View<StyledProps>`
-  flex-direction: row;
-  align-items: center;
-  gap: ${({ theme }: StyledProps) => `${theme.spacing.xs}px`};
 `;
 
 const MetaText = styled.Text<StyledProps>`
@@ -254,7 +245,7 @@ export const RecipeDetailsScreen = () => {
     return (
       <Container>
         <ScreenScroll
-          contentContainerStyle={{ paddingTop: 48 }}
+          contentContainerStyle={{ paddingTop: theme.spacing.xl }}
           accessibilityLabel="Loading recipe"
         >
           <ActivityIndicator
@@ -280,117 +271,108 @@ export const RecipeDetailsScreen = () => {
           contentFit="cover"
           transition={200}
         />
-        <DetailsContainer>
-          <Title>{recipe.title}</Title>
-          <Description>{recipe.description}</Description>
-          <MetaRow>
-            <MetaItem>
-              <Ionicons
-                name="time-outline"
-                size={14}
-                color={theme.colors.text.tertiary}
-              />
-              <MetaText>{recipe.brewTime}</MetaText>
-            </MetaItem>
-            <MetaText>{recipe.difficulty}</MetaText>
-            <MetaText>{recipe.brewMethod}</MetaText>
-          </MetaRow>
+        <Title>{recipe.title}</Title>
+        <Description>{recipe.description}</Description>
+        <MetaRow>
+          <BrewTimeMeta brewTime={recipe.brewTime} />
+          <MetaText>{recipe.difficulty}</MetaText>
+          <MetaText>{recipe.brewMethod}</MetaText>
+        </MetaRow>
 
-          {effectiveDose && ratioParts ? (
-            <DoseCard>
-              <DoseHeading>Brew dose</DoseHeading>
-              <DoseRow>
-                <DoseLabel>Coffee</DoseLabel>
-                <DoseValue>{effectiveDose.coffeeGrams} g</DoseValue>
-              </DoseRow>
-              <DoseRow>
-                <DoseLabel>{liquidLabel}</DoseLabel>
-                <DoseValue>{effectiveDose.waterGrams} g</DoseValue>
-              </DoseRow>
-              <DoseRow>
-                <DoseLabel>Ratio</DoseLabel>
-                <DoseAccent>
-                  {ratioParts.left} : {ratioParts.right}
-                </DoseAccent>
-              </DoseRow>
-              <DoseCaption>
-                Adjust dose changes these amounts for this brew only.
-              </DoseCaption>
-            </DoseCard>
-          ) : null}
+        {effectiveDose && ratioParts ? (
+          <DoseCard>
+            <DoseHeading>Brew dose</DoseHeading>
+            <DoseRow>
+              <DoseLabel>Coffee</DoseLabel>
+              <DoseValue>{effectiveDose.coffeeGrams} g</DoseValue>
+            </DoseRow>
+            <DoseRow>
+              <DoseLabel>{liquidLabel}</DoseLabel>
+              <DoseValue>{effectiveDose.waterGrams} g</DoseValue>
+            </DoseRow>
+            <DoseRow>
+              <DoseLabel>Ratio</DoseLabel>
+              <DoseAccent>
+                {ratioParts.left} : {ratioParts.right}
+              </DoseAccent>
+            </DoseRow>
+            <DoseCaption>
+              Adjust dose changes these amounts for this brew only.
+            </DoseCaption>
+          </DoseCard>
+        ) : null}
 
-          <Button
-            title="Adjust dose"
-            onPress={() =>
-              navigation.navigate("EditDose", {
-                recipeId: recipe.id,
-                coffeeGrams: effectiveDose?.coffeeGrams ?? 15,
-                waterGrams: effectiveDose?.waterGrams ?? 250,
-                brewMethod: recipe.brewMethod,
-              })
+        <Button
+          title="Adjust dose"
+          onPress={() =>
+            navigation.navigate("EditDose", {
+              recipeId: recipe.id,
+              coffeeGrams: effectiveDose?.coffeeGrams ?? 15,
+              waterGrams: effectiveDose?.waterGrams ?? 250,
+              brewMethod: recipe.brewMethod,
+            })
+          }
+          variant="outline"
+          fullWidth
+          style={{ marginTop: theme.spacing.lg }}
+          accessibilityHint="Change coffee and water amounts for this session"
+        />
+
+        <Button
+          title="Start brew"
+          onPress={() =>
+            navigation.navigate("BrewSession", {
+              recipeId: recipe.id,
+              coffeeGrams: effectiveDose?.coffeeGrams,
+              waterGrams: effectiveDose?.waterGrams,
+            })
+          }
+          variant="primary"
+          fullWidth
+          style={{ marginTop: theme.spacing.md }}
+          accessibilityHint="Opens the guided brewing steps and timer"
+        />
+
+        <Section>
+          <StepsHeader
+            onPress={() => setStepsExpanded((open) => !open)}
+            activeOpacity={0.75}
+            accessibilityRole="button"
+            accessibilityState={{ expanded: stepsExpanded }}
+            accessibilityLabel={`Recipe steps, ${recipe.steps.length} steps`}
+            accessibilityHint={
+              stepsExpanded
+                ? "Collapses the brewing steps list"
+                : "Expands to show all brewing steps"
             }
-            variant="outline"
-            fullWidth
-            style={{ marginTop: theme.spacing.lg }}
-            accessibilityHint="Change coffee and water amounts for this session"
-          />
-
-          <Button
-            title="Start brew"
-            onPress={() =>
-              navigation.navigate("BrewSession", {
-                recipeId: recipe.id,
-                coffeeGrams: effectiveDose?.coffeeGrams,
-                waterGrams: effectiveDose?.waterGrams,
-              })
-            }
-            variant="primary"
-            fullWidth
-            style={{ marginTop: theme.spacing.md }}
-            accessibilityHint="Opens the guided brewing steps and timer"
-          />
-
-          <Section>
-            <StepsHeader
-              onPress={() => setStepsExpanded((open) => !open)}
-              activeOpacity={0.75}
-              accessibilityRole="button"
-              accessibilityState={{ expanded: stepsExpanded }}
-              accessibilityLabel={`Recipe steps, ${recipe.steps.length} steps`}
-              accessibilityHint={
-                stepsExpanded
-                  ? "Collapses the brewing steps list"
-                  : "Expands to show all brewing steps"
-              }
-            >
-              <StepsHeaderLeft>
-                <StepsHeaderTitle>Steps</StepsHeaderTitle>
-                <StepsHeaderHint>
-                  {stepsExpanded
-                    ? "Tap to hide"
-                    : `${recipe.steps.length} steps — tap to show`}
-                </StepsHeaderHint>
-              </StepsHeaderLeft>
-              <Ionicons
-                name={stepsExpanded ? "chevron-up" : "chevron-down"}
-                size={22}
-                color={theme.colors.text.secondary}
-                accessibilityElementsHidden
-                importantForAccessibility="no"
-              />
-            </StepsHeader>
-            {stepsExpanded
-              ? recipe.steps.map((step, index) => (
-                  <StepContainer key={step.id}>
-                    <StepTitle>
-                      {index + 1}. {step.time}
-                    </StepTitle>
-                    <StepDescription>{step.instruction}</StepDescription>
-                  </StepContainer>
-                ))
-              : null}
-          </Section>
-        </DetailsContainer>
+          >
+            <StepsHeaderLeft>
+              <StepsHeaderTitle>Steps</StepsHeaderTitle>
+              <StepsHeaderHint>
+                {stepsExpanded
+                  ? "Tap to hide"
+                  : `${recipe.steps.length} steps — tap to show`}
+              </StepsHeaderHint>
+            </StepsHeaderLeft>
+            <Ionicons
+              name={stepsExpanded ? "chevron-up" : "chevron-down"}
+              size={22}
+              color={theme.colors.text.secondary}
+              accessibilityElementsHidden
+              importantForAccessibility="no"
+            />
+          </StepsHeader>
+          {stepsExpanded
+            ? recipe.steps.map((step, index) => (
+                <StepContainer key={step.id}>
+                  <StepTitle>
+                    {index + 1}. {step.time}
+                  </StepTitle>
+                  <StepDescription>{step.instruction}</StepDescription>
+                </StepContainer>
+              ))
+            : null}
+        </Section>
       </ScreenScroll>
     </Container>
   );

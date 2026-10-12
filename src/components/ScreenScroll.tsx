@@ -3,9 +3,9 @@ import { ScrollView, type ScrollViewProps } from "react-native";
 import { useTheme } from "styled-components/native";
 
 /**
- * A screen's scrolling body with the standard side and top padding.
- * The padding sits on the content, not the scroll view: padding on the
- * scroll view itself insets its frame, and on web a RefreshControl applies it twice.
+ * A screen's scrolling body with the standard padding on every side.
+ * The padding sits on the content. Padding on the scroll view itself shrinks
+ * the scrolling area, and on web pull-to-refresh applies that padding twice.
  */
 export const ScreenScroll: React.FC<ScrollViewProps> = ({
   contentContainerStyle,
